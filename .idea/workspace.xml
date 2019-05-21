@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a31b6e4-56ab-4808-97f0-1062a28fe350" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserconfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/normalize.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/TOC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/css.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/extend.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/faq.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/html.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/js.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/misc.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/usage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/humans.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/plugins.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/jquery-3.3.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vendor/modernizr-3.7.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tile-wide.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webmoti" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -111,6 +85,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -138,12 +113,12 @@
       <option name="presentableId" value="Default" />
       <updated>1558038316832</updated>
       <workItem from="1558038319271" duration="1224000" />
-      <workItem from="1558451837460" duration="2056000" />
+      <workItem from="1558451837460" duration="2342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3280000" />
+    <option name="totallyTimeSpent" value="3566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1164" extended-state="6" />
