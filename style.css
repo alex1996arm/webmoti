@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url("./../pictures/background.jpg");
+  background-image: url("./public/images/background.jpg");
   background-repeat: no-repeat;
   object-fit: cover;
 }
