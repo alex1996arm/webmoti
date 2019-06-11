@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="dist/main.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" target="_blank" href="http://webmoti.org/"> <img src="./../img/webmoti.png" alt="webMotiIcon" height="80" width="80"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                    <div id="hithere"> Webmoti </div>
+
+            </ul>
+
+            <form id="classStud" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="ClassID" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="StudentID" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Connect</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-info" type="submit">Help</button>
+            </form>
+        </div>
+    </nav>
+
+<script>
+    window.onload = function() {
+        // Video
+        var video = document.getElementById("video_id");
+
+        // Buttons functionality
+        var playButton = document.getElementById("play-pause");
+        var muteButton = document.getElementById("mute");
+        const fullscreen = document.getElementById("full-screen");
+        const midScreen = document.getElementById("Mid-Screen");
+        const smallScreen = document.getElementById("Small-Screen");
+
+        // Sliders (Volume && seek-bar)
+        var seekBar = document.getElementById("seek-bar");
+        var volumeBar = document.getElementById("volume-bar");
+
+        // EVENT LISTENER FOR PLAY BUTTON
+        playButton.addEventListener("click", function(){
+            if(video.paused == true){ video.play();
+                playButton.innerHTML = "Pause";
+            }else{ video.pause();
+                playButton.innerHTML = "Play";
+            }});
+
+        // EVENT LISTENER FOR MUTE BUTTON
+        muteButton.addEventListener("click", function(){
+            if(video.muted == false){ video.mute=true;
+            muteButton.innerHTML = "UnMute";
+            }else{ video.mute=false;
+            muteButton.innerHTML = "Mute";
+            }});
+
+        // FULLSCREEN
+        fullscreen.addEventListener("click", function() {
+            if (video.requestFullscreen) { video.requestFullscreen(); }
+            else if (video.mozRequestFullScreen) { video.mozRequestFullScreen(); }
+            else if (video.webkitRequestFullscreen) { video.webkitRequestFullscreen();
+        }});
+
+        // MIDSCREEN
+        midScreen.addEventListener("click", function() {
+            if(video.)
+        }
+
+    }
+
+
+</script>
+
+</head>
+<body>
+        <h1>Searching for classroom video</h1>
+
+        <div id="video-container">
+            <!--- VIDEO  --->
+            <video id="video_id" width="50%" height="40%" controls onloadedmetadata="this.paused = true;">
+                <source src="./../img/video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>
+                Your browser does not support HTML5 Video.
+            </p>
+            <! -- Video Controls --->
+            <div id="video_controls_bar">
+                <button id="play-pause">Play</button>
+                <input type="range" id="seek-bar" value="0">
+                <button type="button" id="mute">Mute</button>
+                <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+                <button type="button" id="small-screen">Small-Screen</button>
+                <button type="button" id="mid-screen">Mid-Screen</button>
+                <button type="button" id="full-screen">Full-Screen</button>
+            </div>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

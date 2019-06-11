@@ -1,0 +1,18 @@
+#hithere{
+    font-size: 36px;
+}
+
+#classStud{
+    margin-right: 20px;
+}
+
+body {
+    background-image: url("./../pictures/background.jpg");
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+#video_controls_bar{
+    background: #333;
+    padding: 10px;
+}
