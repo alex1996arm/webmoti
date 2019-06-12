@@ -34,3 +34,8 @@ body {
 #leftSideOfBar{
   margin-right: 20px;
 }
+
+#gifWave{
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -1,6 +1,8 @@
 const midScreen = document.getElementById("mid-screen");
 const smallScreen = document.getElementById("small-screen");
 
+const invokeGif = document.getElementById('playGif');
+
 window.onload = function() {
 
   const video = document.getElementById("video_id");
@@ -47,3 +49,6 @@ midScreen.onclick = function(){
 smallScreen.onclick = function(){
   document.getElementById('video-container').style.width = "50%";
 };
+
+
+
