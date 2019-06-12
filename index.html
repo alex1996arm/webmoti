@@ -50,10 +50,17 @@
 
         <div id="video-container">
             <!--- VIDEO  --->
-            <video id="video_id" display="none"   controls onloadedmetadata="this.paused = true;">
-                <source src="./public/images/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+<!--            <video id="video_id" display="none"   controls onloadedmetadata="this.paused = true;">-->
+<!--                <source src="./public/images/video.mp4" type="video/mp4">-->
+<!--                Your browser does not support the video tag.-->
+<!--            </video>-->
+                <div onload="RTC()" class="pure-g">
+                  <div class="pure-u-1-5">
+                    <div id="l-video"></div>
+                  </div>
+                </div>
+
+
 <!--            <p>-->
 <!--                Your browser does not support HTML5 Video.-->
 <!--            </p>-->
