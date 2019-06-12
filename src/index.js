@@ -41,13 +41,13 @@ window.onload = function() {
 
   document.getElementById("video_id").controls = false;
 
-}
+};
+
+document.getElementById('mid-screen').onclick = function(){
+  document.getElementById('video-container').style.width = "100%";
+};
 
 
-function midFunction(){
-  document.getElementById("video-container").style.width = "100%";
-}
-
-function smallFunction(){
-  document.getElementById("video-container").style.width="50%";
-}
+document.getElementById('small-screen').onclick = function(){
+  document.getElementById('video-container').style.width = "50%";
+};
