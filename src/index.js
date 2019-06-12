@@ -1,19 +1,18 @@
-document.getElementById("hithere").innerText="HELLOOOO";
+const midScreen = document.getElementById("mid-screen");
+const smallScreen = document.getElementById("small-screen");
 
 window.onload = function() {
 
-  var video = document.getElementById("video_id");
+  const video = document.getElementById("video_id");
 
   // Buttons functionality
-  var playButton = document.getElementById("play-pause");
-  var muteButton = document.getElementById("mute");
+  const playButton = document.getElementById("play-pause");
+  const muteButton = document.getElementById("mute");
   const fullscreen = document.getElementById("full-screen");
-  const midScreen = document.getElementById("Mid-Screen");
-  const smallScreen = document.getElementById("Small-Screen");
 
   // Sliders (Volume && seek-bar)
-  var seekBar = document.getElementById("seek-bar");
-  var volumeBar = document.getElementById("volume-bar");
+  const seekBar = document.getElementById("seek-bar");
+  const volumeBar = document.getElementById("volume-bar");
 
   // EVENT LISTENER FOR PLAY BUTTON
   playButton.addEventListener("click", function(){
@@ -37,17 +36,14 @@ window.onload = function() {
     else if (video.mozRequestFullScreen) { video.mozRequestFullScreen(); }
     else if (video.webkitRequestFullscreen) { video.webkitRequestFullscreen();
     }});
-
-
   document.getElementById("video_id").controls = false;
-
 };
 
-document.getElementById('mid-screen').onclick = function(){
+midScreen.onclick = function(){
   document.getElementById('video-container').style.width = "100%";
 };
 
 
-document.getElementById('small-screen').onclick = function(){
+smallScreen.onclick = function(){
   document.getElementById('video-container').style.width = "50%";
 };
