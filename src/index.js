@@ -27,7 +27,7 @@ capture({ audio: false, video: true }, { plugins: plugins }, function(err, local
   });
 
   // initiate connection
-  quickconnect('https://138.197.165.173:2021/', { room: 'contest', plugins: plugins })
+  quickconnect('https://138.197.165.173:80/', { room: 'contest', plugins: plugins })
   // broadcast our captured media to other participants in the room
     .addStream(localStream)
     // when a peer is connected (and active) pass it to us for use
