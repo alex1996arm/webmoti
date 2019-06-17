@@ -12,15 +12,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded-bottom">
-        <a class="navbar-brand" target="_blank" href="http://webmoti.org/"> <img src="./public/images/webmoti.png" alt="webMotiIcon" height="80" width="80"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!--<nav id="navBar" class="navbar navbar-inverse navbar-fixed-top rounded-bottom">-->
+  <nav id="mainNav" class="navbar navbar-dark bg-dark">
+    <div class="navbar-icon">
+        <a class="compLogo" target="_blank" href="http://webmoti.org/">
+          <img id="logoImg" src="./public/images/webmoti.png" alt="webMotiIcon" height="80" width="80">
+        </a>
+        <span id="compName"> Webmoti </span>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul id="leftSideOfBar" class="navbar-nav mr-auto">
-                    <div id="hithere"> Webmoti </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      </div>
+
+      <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="bg-dark p-4">
+            <form id="classStud" class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="ClassID" aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" placeholder="StudentID" aria-label="Search">
+              <button class="btn btn-primary" type="submit">Connect</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <form id="classStudBig" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 hideDiv" type="search" placeholder="ClassID" aria-label="Search">
+      <input class="form-control mr-sm-2 hideDiv" type="search" placeholder="StudentID" aria-label="Search">
+      <button class="btn btn-primary hideDiv" type="submit">Connect</button>
+    </form>
+
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary">
                         <input type="radio" name="options" id="option2" autocomplete="off"> Classroom
@@ -29,25 +51,14 @@
                         <input type="radio" name="options" id="option3" autocomplete="off"> Student
                     </label>
                 </div>
-            </ul>
-
-            <form id="classStud" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="ClassID" aria-label="Search">
-                <input class="form-control mr-sm-2" type="search" placeholder="StudentID" aria-label="Search">
-                <button class="btn btn-primary" type="submit">Connect</button>
-            </form>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-info" type="submit">Help</button>
-            </form>
-        </div>
+                <button id="HelpButton" class="btn btn-info" type="submit">Help</button>
     </nav>
 
 
 
 </head>
 <body>
-        <h1>Searching for classroom video</h1>
-
+      <div id="mainContent">
         <div id="video-container">
             <!--- VIDEO  --->
 <!--            <video id="video_id" display="none"   controls onloadedmetadata="this.paused = true;">-->
@@ -77,6 +88,7 @@
               </button>
             </div>
         </div>
+      </div>
 
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
