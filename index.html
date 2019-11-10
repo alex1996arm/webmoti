@@ -1,115 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Webmoti</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap" rel="stylesheet">
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
 
-    <!--<nav id="navBar" class="navbar navbar-inverse navbar-fixed-top rounded-bottom">-->
-  <nav id="mainNav" class="navbar navbar-dark bg-dark">
-    <div class="navbar-icon">
-        <a class="compLogo" target="_blank" href="http://webmoti.org/">
-          <img id="logoImg" src="./public/images/webmoti.png" alt="webMotiIcon" height="80" width="80">
-        </a>
-        <span id="compName"> Webmoti </span>
+    <script src="js/socket.io.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen" />
+    <script src="js/zoom.js"></script>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      </div>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-      <div class="pos-f-t">
-        <div class="collapse" id="navbarToggleExternalContent">
-          <div class="bg-dark p-4">
-            <form id="classStud" class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="ClassID" aria-label="Search">
-              <input class="form-control mr-sm-2" type="search" placeholder="StudentID" aria-label="Search">
-              <button class="btn btn-primary" type="submit">Connect</button>
-            </form>
+    <!-- Material Design -->
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  </head>
+  <body>
+    <div id="logged-in-elements" style="display: none">
+      <!-- Snackbars -->
+      <div id="change-teacher-email-snackback" class="mdc-snackbar">
+        <div class="mdc-snackbar__surface">
+          <div class="mdc-snackbar__label"
+               role="status"
+               aria-live="polite">
+            Teacher's email changed
+          </div>
+          <div class="mdc-snackbar__actions">
+            <button id="undo-change-teacher-email-button" type="button" class="mdc-button mdc-snackbar__action">Undo</button>
+            <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
           </div>
         </div>
       </div>
-
-    <form id="classStudBig" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 hideDiv" type="search" placeholder="ClassID" aria-label="Search">
-      <input class="form-control mr-sm-2 hideDiv" type="search" placeholder="StudentID" aria-label="Search">
-      <button class="btn btn-primary hideDiv" type="submit">Connect</button>
-    </form>
-
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Classroom
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Student
-                    </label>
+      <div id="teacher-email-change-different-snackbar" class="mdc-snackbar">
+        <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+          <div class="mdc-snackbar__actions">
+            <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+          </div>
+          <div class="mdc-snackbar__label"
+               role="status"
+               aria-live="polite"
+               style="color: white !important;">
+            Emails not mactching
+          </div>
+          <div class="mdc-snackbar__actions">
+            <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="myModal" class="modal">
+        <div id="improper-teacher-change-email-snackbar" class="mdc-snackbar">
+          <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+            <div class="mdc-snackbar__actions">
+              <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+            </div>
+            <div class="mdc-snackbar__label"
+                 role="status"
+                 aria-live="polite"
+                 style="color: white !important;">
+              Improper email format
+            </div>
+            <div class="mdc-snackbar__actions">
+              <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+            </div>
+          </div>
+        </div>
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div id="modal-header-container">
+            <h2 id="modal-header-title">Settings</h2>
+          </div>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div id="modal-change-teacher-email-text">
+            <h4>Change Teacher Email</h4>
+          </div>
+          <div id="modal-change-teacher-email">
+            <div id="teacher-input-text-field" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined">
+              <input type="text" id="teacher-change-email-input" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+              <div id="teacher-change-email-notch" class="mdc-notched-outline mdc-notched-outline--upgraded">
+                <div class="mdc-notched-outline__leading"></div>
+                <div id="teacher-change-email-width" class="mdc-notched-outline__notch" style="">
+                  <label id="teacher-input-label-field" class="mdc-floating-label" for="text-field-outlined-shape-one" style="">Email</label>
                 </div>
-                <button id="HelpButton" class="btn btn-info" type="submit">Help</button>
-    </nav>
-
-
-
-</head>
-<body>
-      <div id="mainContent">
-        <div id="video-container">
-            <!--- VIDEO  --->
-<!--            <video id="video_id" display="none"   controls onloadedmetadata="this.paused = true;">-->
-<!--                <source src="./public/images/video.mp4" type="video/mp4">-->
-<!--                Your browser does not support the video tag.-->
-<!--            </video>-->
-<!--                <div onload="RTC()" class="pure-g">-->
-<!--                  <div class="pure-u-1-5">-->
-<!--                    <div id="l-video"></div>-->
-<!--                  </div>-->
-<!--                </div>-->
-
-
-<!--            <p>-->
-<!--                Your browser does not support HTML5 Video.-->
-<!--            </p>-->
-            <! -- Video Controls --->
-            <div id="video_controls_bar">
-                <button id="play-pause">Play</button>
-                <input type="range" id="seek-bar" value="0">
-                <button type="button" id="mute">Mute</button>
-                <button type="button" id="small-screen">Small-Screen</button>
-                <button type="button" id="mid-screen">Mid-Screen</button>
-                <button type="button" id="full-screen">Full-Screen</button>
-              <button type="button" id="playGif"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                GIF
-              </button>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
             </div>
-        </div>
-      </div>
-
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">STUDENT HAS A QUESTION</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+            
+            <div id="teacher-change-buttons">
+                <button id="edit-teacher-email-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
+                  <span id="edit-teacher-email-span" class="mdc-button__label">save</span>
                 </button>
+            </div>
+          </div>
+          <div id="teacher-input-retype-text-field" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined">
+            <input type="text" id="teacher-retype-email-input" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+            <div id="teacher-retype-email-notch" class="mdc-notched-outline mdc-notched-outline--upgraded">
+              <div class="mdc-notched-outline__leading"></div>
+              <div id="teacher-retype-email-width" class="mdc-notched-outline__notch" style="">
+                <label id="teacher-input-retype-label-field" class="mdc-floating-label" for="text-field-outlined-shape-one" style="">Retype Email</label>
               </div>
-              <div class="modal-body">
-                  <img id="gifWave" src ="./public/images/leo.gif" />
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+              <div class="mdc-notched-outline__trailing"></div>
             </div>
           </div>
         </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+      
+      </div>
+      <aside class="mdc-drawer mdc-drawer--modal">
+          <div class="mdc-drawer__header">
+            <h3 id="drawer-header-name" class="mdc-drawer__title">Mail</h3>
+            <h6 id="drawer-header-email" class="mdc-drawer__subtitle">email@material.io</h6>
+          </div>
+        <div class="mdc-drawer__content">
+          <nav id="drawer-list" class="mdc-list">
+            <a
+              id="drawer-home-button"
+              class="mdc-list-item mdc-list-item--activated"
+              href=""
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >home</i
+              >
+              <span class="mdc-list-item__text">Main</span>
+            </a>
+            <hr class="mdc-list-divider">
+            <a
+              id="drawer-settings-button"
+              class="mdc-list-item"
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >settings</i
+              >
+              <span class="mdc-list-item__text">Settings</span>
+              <a
+              id="drawer-logout-button"
+              class="mdc-list-item"
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >power_settings_new</i
+              >
+              <span class="mdc-list-item__text">Logout</span>
+            </a>
+            
+          </nav>
+        </div>
+      </aside>
+      <div class="mdc-drawer-scrim"></div>
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+      >
+        <button
+          id="drawer-open-button"
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
+          style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
+        >
+          menu</button>
+          <span class="mdc-top-app-bar__title">Webmoti</span>
+      </section>
+      <nav class="main-nav" role="navigation">
+        <ul class="main-nav-list">
+          <li>
+            <!-- <label for="username" class="">Your Username:</label> -->
+            <div id="usernameTextInput" class="mdc-text-field">
+              <input
+                disabled
+                placeholder="Pending"
+                id="username"
+                type="text"
+                class="mdc-text-field__input"
+              />
+              <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </li>
+          <li>
+            <!-- <label for="targetUsername" class="">Teacher Username:</label> -->
+            <div id="targetUsernameTextInput" class="mdc-text-field">
+                <input
+                id="targetUsername"
+                type="text"
+                class="mdc-text-field__input"
+                />
+                <label id="targetUsernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="targetUsername">Home Classroom</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            
+              
+          </li>
 
-        <script src="dist/main.js"></script>
-
-</body>
+          <li>
+            <a
+              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
+              id="call"
+              ><i class="material-icons mdc-button__icon">call</i>Call</a
+            >
+          </li>
+          <li>
+            <a
+              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
+              id="hangup"
+              ><i class="material-icons mdc-button__icon">call_end</i>Hang Up</a
+            >
+          </li>
+          
+          
+        </ul>
+      </nav>
+      <div class="stage">
+        <video
+          id="remoteVideo"
+          autoplay="true"
+          class="z-depth-2"
+          controls
+          style="width: 1280px; height: 720px;"
+        ></video>
+        <video id="localVideo" autoplay="true" muted="true"></video>
+      </div>
+      <div id="stage"></div>
+      
+        
+    </div>
+    <div id="loggedOutElements"></div>
+    <!--  Scripts-->
+    <!-- This file is automatically added/served when running "node index.js". -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
