@@ -115,7 +115,7 @@
               </div>
               <div id="teacher-change-email-error" class="change-email-error"></div>
             </div>
-            
+
             <div id="teacher-change-buttons">
                 <button id="edit-teacher-email-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
                   <span id="edit-teacher-email-span" class="mdc-button__label">save</span>
@@ -139,7 +139,7 @@
         <div class="modal-footer">
         </div>
       </div>
-      
+
       </div>
       <aside class="mdc-drawer mdc-drawer--modal">
           <div class="mdc-drawer__header">
@@ -185,7 +185,7 @@
               >
               <span class="mdc-list-item__text">Logout</span>
             </a>
-            
+
           </nav>
         </div>
       </aside>
@@ -194,7 +194,7 @@
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
       >
         <button
-          tabindex="1" 
+          tabindex="1"
           id="drawer-open-button"
           class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
           style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
@@ -208,7 +208,7 @@
             <div class="user-group">
                 <div id="user-photo-element" class="photo-element">
                     <div id="user-photo-div" class="photo-div"></div>
-                    <div id="user-photo-state" class="photo-state"></div>  
+                    <div id="user-photo-state" class="photo-state"></div>
                 </div>
                 <div id="usernameTextInput" class="mdc-text-field">
                     <input
@@ -221,7 +221,7 @@
                     <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
                     <div class="mdc-line-ripple"></div>
                   </div>
-            </div>           
+            </div>
           </li>
           <li >
             <div class="user-group">
@@ -239,7 +239,7 @@
                     <label id="targetUsernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="targetUsername">Home Classroom</label>
                     <div class="mdc-line-ripple"></div>
                 </div>
-            </div>              
+            </div>
           </li>
 
           <li>
@@ -258,8 +258,8 @@
               ><i class="material-icons mdc-button__icon">call_end</i>Hang Up</a
             >
           </li>
-          
-          
+
+
         </ul>
       </nav>
       <div id='hand'></div>
@@ -285,8 +285,18 @@
         <video id="localVideo" autoplay="true" muted="true"></video>
       </div>
       <div id="stage"></div>
-      
-        
+
+
+    </div>
+
+    <div id="calendarDisplay">
+      <p>Google Calendar</p>
+
+      <!--Add buttons to initiate auth sequence and sign out-->
+      <button id="authorize_button" style="display: none;">Authorize</button>
+      <button id="signout_button" style="display: none;">Sign Out</button>
+
+      <pre id="content" style="white-space: pre-wrap;"></pre>
     </div>
     <div id="loggedOutElements"></div>
     <!--  Scripts-->
@@ -297,6 +307,11 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
     <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
   </body>
 </html>
