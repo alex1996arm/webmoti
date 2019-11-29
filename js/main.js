@@ -472,9 +472,15 @@ function loggedIn(initialUser) {
         ) {
           const keyName = event.key;
           switch (keyName) {
-            case "q":
+            case "c":
               sendToPeer(keyName);
               sendToPeer("");
+              break;
+            case "q":
+              hangup();
+              break;
+            case "p":
+              call();
               break;
             case "w":
               zoomIn();
@@ -967,7 +973,7 @@ function loggedIn(initialUser) {
         //add motor right
         socket.emit("right");
         break;
-      case "q":
+      case "c":
         socket.emit("stop");
         break;
       case "Enter":
