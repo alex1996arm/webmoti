@@ -878,7 +878,7 @@ function loggedIn(initialUser) {
       ""
     );
     listenSelf();
-
+    keyboardListener();
     socket.on("connect", () => {
       console.log("Found Node Server, setting self as classroom");
       targetIcon.style.display = "none";
