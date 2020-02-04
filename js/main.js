@@ -7,7 +7,15 @@ var firebaseConfig = {
   projectId: "webmotia",
   storageBucket: "webmotia.appspot.com",
   messagingSenderId: "606747164317",
-  appId: "1:606747164317:web:952c390708ccb09d"
+  appId: "1:606747164317:web:952c390708ccb09d",
+  scopes: [
+    "email",
+    "profile",
+    "https://www.googleapis.com/auth/calendar.events"
+  ],
+  discoveryDocs: [
+    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+  ]
 };
 // var firebaseConfig = {
 //   apiKey: "AIzaSyA8BvFlnJpqxnjoB3zeG355JA_SVkjGZGc",
@@ -81,6 +89,57 @@ firebase.auth().onAuthStateChanged(user => {
       .catch(err => {
         console.log("Error getting document: ", err);
       });
+    //Adding Google API Client
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://apis.google.com/js/api.js';
+    // Once the Google API Client is loaded, you can run your code
+    script.onload = function(e){
+      // Initialize the Google API Client with the config object
+      gapi.load("client", function() {
+        gapi.client.init({
+          apiKey: firebaseConfig.apiKey,
+          clientId: firebaseConfig.clientID,
+          discoveryDocs: firebaseConfig.discoveryDocs,
+          scope: firebaseConfig.scopes.join(' '),
+        })
+
+      }).then(function() {
+          // Make sure the Google API Client is properly signed in
+          if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+            startApp(user);
+          } else {
+            firebase.auth().signOut(); // Something went wrong, sign out
+          }
+        })
+    };
+    // Add to the document
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+    function startApp(user) {
+      console.log(user);
+
+      // Make sure to refresh the Auth Token in case it expires!
+      firebase.auth().currentUser.getToken()
+        .then(function(){
+          return gapi.client.calendar.events
+            .list({
+              calendarId: "primary",
+              timeMin: new Date().toISOString(),
+              showDeleted: false,
+              singleEvents: true,
+              maxResults: 10,
+              orderBy: "startTime"
+            })
+        })
+        .then(function(response) {
+          console.log(response);
+        });
+    }
+
+
+
+
   } else {
     // Redirect user to login
     loggedInElements.style.display = "none";
