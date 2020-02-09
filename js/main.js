@@ -15,7 +15,8 @@ var firebaseConfig = {
   ],
   discoveryDocs: [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
-  ]
+  ],
+  clientId: "1053696254964-r66l5j9ll5p8rt5gukocqo5qpseds8q0.apps.googleusercontent.com"
 };
 // var firebaseConfig = {
 //   apiKey: "AIzaSyA8BvFlnJpqxnjoB3zeG355JA_SVkjGZGc",
@@ -99,7 +100,7 @@ firebase.auth().onAuthStateChanged(user => {
       gapi.load("client", function() {
         gapi.client.init({
           apiKey: firebaseConfig.apiKey,
-          clientId: firebaseConfig.clientID,
+          clientId: firebaseConfig.clientId,
           discoveryDocs: firebaseConfig.discoveryDocs,
           scope: firebaseConfig.scopes.join(' '),
         })

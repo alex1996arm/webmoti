@@ -13,7 +13,8 @@ var firebaseConfig = {
   ],
   discoveryDocs: [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
-  ]
+  ],
+  clientId: "1053696254964-r66l5j9ll5p8rt5gukocqo5qpseds8q0.apps.googleusercontent.com"
 };
 // var firebaseConfig = {
 //   apiKey: "AIzaSyA8BvFlnJpqxnjoB3zeG355JA_SVkjGZGc",
