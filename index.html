@@ -286,6 +286,15 @@
       </div>
       <div id="stage"></div>
 
+      <div id="calendarDisplay">
+        <p>Google Calendar</p>
+
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <button id="authorize_button" style="display: none;">Authorize</button>
+        <button id="signout_button" style="display: none;">Sign Out</button>
+
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+      </div>
 
     </div>
 
@@ -301,7 +310,12 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-
+    <script src="js/calendar.js"></script>
     <script src="js/main.js"></script>
+    <script defer src="https://apis.google.com/js/api.js"
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
   </body>
 </html>

@@ -1,7 +1,7 @@
-function runCalendar(){
+console.log("CalendarFunction");
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '104314011733-m92psldnlstpbraupnfs0ef6m59d2s7e.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyC9d4mckPzCO9dUEBlxYhpWpM5Np1zJLnY';
+var CLIENT_ID = "1053696254964-r66l5j9ll5p8rt5gukocqo5qpseds8q0.apps.googleusercontent.com";
+var API_KEY = "AIzaSyCfJk9eRLfxozjdfbv7tJv-CkpP7Wmf05g";
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -41,6 +41,7 @@ function initClient() {
   }, function(error) {
     appendPre(JSON.stringify(error, null, 2));
   });
+  console.log("Event initialized");
 }
 
 /**
@@ -115,4 +116,4 @@ function listUpcomingEvents() {
     }
   });
 }
-}
+

@@ -90,32 +90,6 @@ firebase.auth().onAuthStateChanged(user => {
       .catch(err => {
         console.log("Error getting document: ", err);
       });
-    //Adding Google API Client
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://apis.google.com/js/api.js';
-    // Once the Google API Client is loaded, you can run your code
-    script.onload = function(e){
-      // Initialize the Google API Client with the config object
-      gapi.load("client", function() {
-        gapi.client.init({
-          apiKey: firebaseConfig.apiKey,
-          clientId: firebaseConfig.clientId,
-          discoveryDocs: firebaseConfig.discoveryDocs,
-          scope: firebaseConfig.scopes.join(' '),
-        })
-
-      }).then(function() {
-          // Make sure the Google API Client is properly signed in
-          if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-            startApp(user);
-          } else {
-            firebase.auth().signOut(); // Something went wrong, sign out
-          }
-        })
-    };
-    // Add to the document
-    document.getElementsByTagName('head')[0].appendChild(script);
 
     function startApp(user) {
       console.log(user);
