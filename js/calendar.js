@@ -109,11 +109,39 @@ function listUpcomingEvents() {
         if (!when) {
           when = event.start.date;
         }
-        appendPre(event.summary + ' (' + when + ')')
+        appendPre(event.summary + ' (' + when + ')');
+
+        setTimeout(sendNotification,((Date.parse(event.start.dateTime)-Date.now())-600000),event);
       }
     } else {
       appendPre('No upcoming events found.');
     }
   });
+}
+
+function sendNotification(event)
+{
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification("Upcoming event: "+event.summary +" at "+event.start.dateTime);
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification("Hi there!");
+      }
+    });
+  }
+
+
 }
 
