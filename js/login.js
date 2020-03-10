@@ -6,7 +6,7 @@ var firebaseConfig = {
   storageBucket: "webmotia.appspot.com",
   messagingSenderId: "606747164317",
   appId: "1:606747164317:web:952c390708ccb09d",
-  scopes: [ 
+  scopes: [
     "email",
     "profile",
     "https://www.googleapis.com/auth/calendar.events"
@@ -52,7 +52,6 @@ var uiConfig = {
             let teacherEmail = data.teacherEmail;
             let isTeacher = data.isTeacher;
             let status = data.status;
-            let studentTime = data.studentTime;
             db.collection("Users")
               .doc(authResult.user.email)
               .set({
@@ -61,8 +60,8 @@ var uiConfig = {
                 displayName: authResult.user.displayName,
                 uid: id,
                 photoURL: authResult.user.photoURL,
-                isTeacher: isTeacher,
-                studentTime: studentTime
+                isTeacher: isTeacher
+
               })
               .then(function() {
                 window.location.replace("index.html");
@@ -79,8 +78,8 @@ var uiConfig = {
                 displayName: authResult.user.displayName,
                 uid: id,
                 photoURL: authResult.user.photoURL,
-                isTeacher: "False",
-                studentTime: "30"
+                isTeacher: "False"
+
               })
               .then(function() {
                 window.location.replace("index.html");

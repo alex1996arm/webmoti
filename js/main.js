@@ -7,7 +7,16 @@ var firebaseConfig = {
   projectId: "webmotia",
   storageBucket: "webmotia.appspot.com",
   messagingSenderId: "606747164317",
-  appId: "1:606747164317:web:952c390708ccb09d"
+  appId: "1:606747164317:web:952c390708ccb09d",
+  scopes: [
+    "email",
+    "profile",
+    "https://www.googleapis.com/auth/calendar.events"
+  ],
+  discoveryDocs: [
+    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+  ],
+  clientId: "1053696254964-r66l5j9ll5p8rt5gukocqo5qpseds8q0.apps.googleusercontent.com"
 };
 // var firebaseConfig = {
 //   apiKey: "AIzaSyA8BvFlnJpqxnjoB3zeG355JA_SVkjGZGc",
@@ -62,9 +71,9 @@ firebase.auth().onAuthStateChanged(user => {
             userStatusDatabaseRef.set(isOnlineForDatabase);
           });
       });
-      console.log(user.studentTime);
+
     db.collection("Users")
-      .doc("riteshahlawat1@gmail.com")
+      .doc(user.email)
       .get()
       .then(doc => {
         if (doc.exists) {
@@ -81,6 +90,31 @@ firebase.auth().onAuthStateChanged(user => {
       .catch(err => {
         console.log("Error getting document: ", err);
       });
+
+    function startApp(user) {
+      console.log(user);
+
+      // Make sure to refresh the Auth Token in case it expires!
+      firebase.auth().currentUser.getToken()
+        .then(function(){
+          return gapi.client.calendar.events
+            .list({
+              calendarId: "primary",
+              timeMin: new Date().toISOString(),
+              showDeleted: false,
+              singleEvents: true,
+              maxResults: 10,
+              orderBy: "startTime"
+            })
+        })
+        .then(function(response) {
+          console.log(response);
+        });
+    }
+
+
+
+
   } else {
     // Redirect user to login
     loggedInElements.style.display = "none";
@@ -96,8 +130,7 @@ window.addEventListener("beforeunload", function(e) {
       displayName: mainUser.displayName,
       uid: mainUser.uid,
       photoURL: mainUser.photoURL,
-      isTeacher: mainUser.isTeacher,
-      studentTime: mainUser.studentTime
+      isTeacher: mainUser.isTeacher
     })
     .then(function() {
       console.log("Logged On!!");
@@ -108,7 +141,6 @@ window.addEventListener("beforeunload", function(e) {
 });
 function logOut() {
   firebase.auth().signOut();
-  // gapi.auth2.getAuthInstance().signOut();
 }
 
 // Runs once logged in
@@ -153,15 +185,11 @@ function loggedIn(initialUser) {
   var drawerOpenButton = document.getElementById("drawer-open-button");
 
   // settgings modal
-  var settingsModal = document.getElementById("settings-modal");
+  var settingsModal = document.getElementById("myModal");
   var settingsSpan = document.getElementsByClassName("close")[0];
   const teacherChangeEmailTextInput = new mdc.textField.MDCTextField(
     document.querySelector("#teacher-input-text-field")
   );
-  var setStudentTimeTextInput = new mdc.textField.MDCTextField(
-    document.getElementById("set-student-time-input-text-fields")
-  );
-
   var teacherInputTextField = document.getElementById(
     "teacher-input-text-field"
   );
@@ -206,11 +234,9 @@ function loggedIn(initialUser) {
   );
 
   var teacherEmailError = document.getElementById("teacher-change-email-error");
-
   var teacherRetypeEmailError = document.getElementById(
     "teacher-change-retype-email-error"
   );
-
 
   // Profile photos
   var userProfilePhoto = document.getElementById("user-photo-div");
@@ -218,46 +244,6 @@ function loggedIn(initialUser) {
 
   var userProfileState = document.getElementById("user-photo-state");
   var teacherProfileState = document.getElementById("teacher-photo-state");
-
-  // Settings tabs
-  var settingsTimeBody = document.getElementById("teacher-settings-body");
-  var settingsEmailBody = document.getElementById("email-settings-body");
-
-  var settingsEmailTab = document.getElementById("settings-email-tab");
-  var settingsTimeTab = document.getElementById("settings-teacher-tab");
-
-  var setStudentTimeInput = document.getElementById("set-student-input");
-  var setStudentSaveButton = document.getElementById(
-    "set-student-time-save-button"
-  );
-  var setStudentError = document.getElementById("set-student-error");
-
-  // Calendar
-  var calendarWidget = document.getElementById("calendar-widget");
-  var calendarElement = document.getElementById("calendar");
-  var calendarModal = document.getElementById("calendar-modal");
-  var calendar;
-  var calendarHeader;
-  var calendarHeaderViewSelectorButtons;
-  var calendarTodayButton;
-  var calendarPreviousButton;
-  var calendarNextButton;
-  var dayButton;
-  var weekButton;   
-  var events = null;
-  var calendarColors = {
-    1: "#7986cb",
-    2: "#33b679",
-    3: "#8e24aa",
-    4: "#e67c73",
-    5: "#f6c026",
-    6: "#f5511d",
-    7: "#039be5",
-    8: "#616161",
-    9: "#3f51b5",
-    10: "#0b8043",
-    11: "#d60000"
-  }
 
   var previousTeacherEmail;
   var previousTeacherProfilePicture;
@@ -271,16 +257,13 @@ function loggedIn(initialUser) {
   var isStudent = true;
   var mediaDetails;
   var coolDown = false;
-  var minuteTimer;
+  var minuteTimer = 30;
   var minuteTimerAct = false;
   var urgentQuestion = false;
   var Bell = new Audio("../audio/bell.mp3");
   var teacherUserDatabaseRef;
   var onSettingsPage = false;
-  var onCalendarPage = false;
-  var targetUsernameLabelMainText;
-  var targetUsernameLabelSelectedText;
-  var currentSettingsTab = "email";
+
   setRandomUser(username);
   function setRandomUser(textbox) {
     textbox.value = email;
@@ -495,15 +478,7 @@ function loggedIn(initialUser) {
 
     if (keyName == "Enter") {
       if (onSettingsPage) {
-        if (document.activeElement == settingsTimeTab) {
-          settingsTimeTab.click();
-        } else if (document.activeElement == settingsEmailTab) {
-          settingsEmailTab.click();
-        } else if (settingsEmailBody.style.display == "flex") {
-          saveTeacherEmailButton.click();
-        } else if (settingsTimeBody.style.display == "flex") {
-          setStudentSaveButton.click();
-        }
+        saveTeacherEmailButton.click();
       } else {
         if (document.activeElement == drawerLogoutButton) {
           drawerLogoutButton.click();
@@ -518,9 +493,6 @@ function loggedIn(initialUser) {
     } else if (keyName == "Escape") {
       if (onSettingsPage) {
         settingsModal.click();
-      } else if (onCalendarPage) {
-        calendarModal.style.display = "none";
-        onCalendarPage = false;
       }
     }
   });
@@ -534,9 +506,15 @@ function loggedIn(initialUser) {
         ) {
           const keyName = event.key;
           switch (keyName) {
-            case "q":
+            case "c":
               sendToPeer(keyName);
               sendToPeer("");
+              break;
+            case "q":
+              hangup();
+              break;
+            case "p":
+              call();
               break;
             case "w":
               zoomIn();
@@ -601,208 +579,21 @@ function loggedIn(initialUser) {
       ""
     );
   }
-  // Settings tab on clicks
-  settingsEmailTab.addEventListener("click", () => {
-    if (currentSettingsTab != "email") {
-      currentSettingsTab = "email";
-      settingsTimeTab.classList.remove("settings-tab-selected");
-      settingsEmailTab.classList.add("settings-tab-selected");
-
-      settingsEmailBody.style.display = "flex";
-      settingsTimeBody.style.display = "none";
-    }
-  });
-  settingsTimeTab.addEventListener("click", () => {
-    if (currentSettingsTab != "teacher") {
-      currentSettingsTab = "teacher";
-      settingsTimeTab.classList.add("settings-tab-selected");
-      settingsEmailTab.classList.remove("settings-tab-selected");
-
-      settingsEmailBody.style.display = "none";
-      settingsTimeBody.style.display = "flex";
-    }
-  });
-  setStudentSaveButton.addEventListener("click", () => {
-    if (setStudentTimeInput.value >= 10 && setStudentTimeInput.value <= 60) {
-      db.collection("Users")
-        .doc(teacherUser.email)
-        .set({
-          displayName: teacherUser.displayName,
-          email: teacherUser.email,
-          teacherEmail: teacherUser.teacherEmail,
-          uid: teacherUser.uid,
-          photoURL: teacherUser.photoURL,
-          isTeacher: teacherUser.isTeacher,
-          studentTime: setStudentTimeInput.value
-        })
-        .then(function() {
-          teacherUser.studentTime = setStudentTimeInput.value;
-          document.querySelectorAll(".hand-span").forEach(element => {
-            element.style.animationDuration = setStudentTimeInput.value + "s";
-          });
-          document.querySelector(".minute").style.animationDuration =
-            setStudentTimeInput.value + "s";
-          settingsModal.click();
-        })
-        .catch(function(error) {
-          console.error("Error changing email: ", error);
-        });
-    }
-  });
-  setStudentTimeInput.addEventListener("keyup", () => {
-    if (setStudentTimeInput.value < 10 || setStudentTimeInput.value > 60) {
-      setStudentError.innerHTML = "Please enter a value between 10-60";
-    } else {
-      setStudentError.innerHTML = "";
-    }
-  }); 
-  // Calendar
-  calendarWidget.addEventListener("click", () => {
-    calendarModal.style.display = "flex";
-    onCalendarPage = true;
-    calendar.render();
-    postCalendarLoad();
-    
-    
-  });
-  // Called after every calender render to render our own custom stuff to customize calendar
-  function postCalendarLoad() {
-    // Get events once and load them
-    if (events == null) {
-      gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date("04 September 2019 00:00 UTC")).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 250,
-        'orderBy': 'startTime'
-      }).then(function(response) {
-        events = response.result.items;
-        for (let i = 0; i < events.length; i++) {
-          // console.log(events[i].colorId);
-          // Not all day events
-          if (events[i].start.dateTime) {
-            // Temp color
-            let tempColor = calendarColors[events[i].colorId];
-            if(tempColor == null) {
-              tempColor = calendarColors[1];
-            }
-            calendar.addEvent({
-              title: events[i].summary,
-              allDay: false,
-              start: events[i].start.dateTime,
-              end: events[i].end.dateTime,
-              backgroundColor: tempColor
-            });
-          } else {
-            // All day events
-            // Temp color
-            let tempColor = calendarColors[events[i].colorId];
-            if(tempColor == null) {
-              tempColor = calendarColors[1];
-            }
-            calendar.addEvent({
-              title: events[i].summary,
-              allDay: true,
-              start: events[i].start.date,
-              end: events[i].end.date,
-              backgroundColor: tempColor
-            })
-          }
-        }
-      });
-    }
-    // initialize
-    calendarHeader = calendarElement.childNodes[0];
-    calendarHeaderViewSelectorButtons = calendarHeader.querySelector(".fc-right");
-    dayButton = calendarHeaderViewSelectorButtons.querySelector(".fc-timeGridDay-button");
-    weekButton = calendarHeaderViewSelectorButtons.querySelector(".fc-timeGridWeek-button");
-    calendarTodayButton = calendarHeader.querySelector(".fc-today-button");
-    calendarPreviousButton = calendarHeader.querySelector(".fc-prev-button");
-    calendarNextButton = calendarHeader.querySelector(".fc-next-button");
-
-    // Customization
-    dayButton.innerHTML = "<i class=\"material-icons calendar-icon\">today</i>" + "<p>Day</p>";   
-    dayButton.classList.add("calendar-button-theme");
-
-    weekButton.innerHTML = "<i class=\"material-icons calendar-icon\">view_week</i>" + "<p>Week</p>";
-    weekButton.classList.add("calendar-button-theme");
-
-    calendarTodayButton.innerHTML = "<i class=\"material-icons calendar-icon\">calendar_today</i>" + "<p>Today</p>";
-    calendarTodayButton.classList.add("calendar-button-theme");
-    
-    calendarNextButton.classList.add("calendar-button-theme");
-
-    calendarPreviousButton.classList.add("calendar-button-theme");
-
-  }
 
   function initialize() {
-    // Calendar
-    // calendarModal.style.display = "none";
-    calendar = new FullCalendar.Calendar(calendarElement, {
-      plugins: ["timeGrid"],
-      defaultView: "timeGridDay",
-      nowIndicator: true,
-      weekends: false,
-      header: {
-        left: 'prev,next, today',
-        center: 'title', 
-        right: 'timeGridDay, timeGridWeek'
-      }
-    });
-
-    calendar.render();
-
     let teacherEmail = user.teacherEmail;
-    minuteTimer = user.studentTime;
-    document.querySelectorAll(".hand-span").forEach(element => {
-      element.style.animationDuration = user.studentTime.toString(10) + "s";
-    });
-    document.querySelector(".minute").style.animationDuration =
-      user.studentTime.toString(10) + "s";
-    db.collection("Users")
-      .doc(user.email)
-      .onSnapshot(doc => {
-        let data = doc.data();
-        if (user.studentTime != data.studentTime) {
-          user.studentTime = data.studentTime;
-          minuteTimer = user.studentTime;
-          document.querySelectorAll(".hand-span").forEach(element => {
-            element.style.animationDuration =
-              user.studentTime.toString(10) + "s";
-          });
-          document.querySelector(".minute").style.animationDuration =
-            user.studentTime.toString(10) + "s";
-        }
-      });
     targetUsername.value = teacherEmail;
     usernameLabel.innerHTML = user.displayName;
     userProfilePhoto.style.backgroundImage = "url('" + user.photoURL + "')";
     userProfileState.style.backgroundColor = "#47bf39";
-    // Target Label Set
-    if (user.isTeacher == "False") {
-      targetUsernameLabelMainText = "Home Classroom";
-      targetUsernameLabelSelectedText = "Other Classroom";
 
-      setStudentSaveButton.disabled = true;
-      setStudentTimeInput.disabled = true;
-    } else if (user.isTeacher == "True") {
-      targetUsernameLabelMainText = "Student Email";
-      targetUsernameLabelSelectedText = "Other Email";
-      setStudentSaveButton.disabled = false;
-      setStudentTimeInput.disabled = false;
-    } else {
-      targetUsernameLabelMainText = "N/A";
-      targetUsernameLabelSelectedText = "N/A";
-    }
-    targetUsernameLabel.innerHTML = targetUsernameLabelMainText;
     db.collection("Users")
       .doc(user.teacherEmail)
       .get()
       .then(doc => {
         if (doc.exists) {
           teacherUser = doc.data();
+          targetUsernameLabel.innerHTML = teacherUser.displayName;
           // Teacher online/offline
           teacherUserDatabaseRef = firebase
             .database()
@@ -885,21 +676,18 @@ function loggedIn(initialUser) {
         settingsModal.style.display = "flex";
         // Initial teacher email change input setup
         teacherChangeEmailInput.value = user.teacherEmail;
-        teacherChangeEmailLabel.innerHTML = "Target Email";
+        teacherChangeEmailLabel.innerHTML = "Teacher Email";
         teacherEmailChangeNotch.classList.add("mdc-notched-outline--notched");
         teacherChangeEmailLabel.classList.add(
           "mdc-floating-label--float-above"
         );
-        teacherEmailChangeWidth.style.width = "77.5px";
+        teacherEmailChangeWidth.style.width = "85.4px";
         previousTeacherEmail = targetUsername.value;
         // Set tab index's
         drawerOpenButton.tabIndex = "-1";
         targetUsername.tabIndex = "-1";
         callButton.tabIndex = "-1";
         hangupButton.tabIndex = "-1";
-
-        settingsEmailTab.tabIndex = "5";
-        settingsTimeTab.tabInded = "6";
       }, 5);
     });
 
@@ -913,7 +701,6 @@ function loggedIn(initialUser) {
         drawer.open = false;
       } else {
         drawer.open = true;
-        drawerHomeButton.tabIndex = "0";
       }
     });
 
@@ -928,20 +715,12 @@ function loggedIn(initialUser) {
     });
 
     window.addEventListener("click", event => {
-
       if (event.target == settingsModal) {
         // Set tab index's
         drawerOpenButton.tabIndex = "1";
         targetUsername.tabIndex = "2";
         callButton.tabIndex = "3";
         hangupButton.tabIndex = "4";
-
-        settingsEmailTab.tabIndex = "-1";
-        settingsTimeTab.tabIndex = "-1";
-
-        teacherEmailError.innerHTML = "";
-        teacherRetypeEmailError.innerHTML = "";
-        setStudentError.innerHTML = "";
 
         onSettingsPage = false;
         settingsModal.style.display = "none";
@@ -957,20 +736,15 @@ function loggedIn(initialUser) {
         );
         teacherChangeRetypeInput.value = "";
       }
-      if (event.target == calendarModal) {
-        // Calendar
-        calendarModal.style.display = "none";
-        onCalendarPage = false;
-      }
       if (event.target == targetUsername) {
-        targetUsernameLabel.innerHTML = targetUsernameLabelSelectedText;
+        targetUsernameLabel.innerHTML = "Other Classroom";
       }
       if (event.target != targetUsername) {
         if (targetUsernameTextInput.value == "") {
           targetUsernameTextInput.value = user.teacherEmail;
-          targetUsernameLabel.innerHTML = targetUsernameLabelMainText;
+          targetUsernameLabel.innerHTML = "Home Classroom";
         } else if (targetUsernameTextInput.value == user.teacherEmail) {
-          targetUsernameLabel.innerHTML = targetUsernameLabelMainText;
+          targetUsernameLabel.innerHTML = "Home Classroom";
         }
       }
     });
@@ -985,13 +759,12 @@ function loggedIn(initialUser) {
           teacherEmail: previousTeacherEmail,
           uid: uid,
           photoURL: user.photoURL,
-          isTeacher: user.isTeacher,
-          studentTime: user.studentTime
+          isTeacher: user.isTeacher
         })
         .then(function() {
           teacherUser = previousTeacherUser;
           teacherProfilePhoto.style.backgroundImage = previousTeacherProfilePicture;
-          teacherChangeEmailLabel.innerHTML = "Target Email";
+          teacherChangeEmailLabel.innerHTML = "Teacher Email";
           user.teacherEmail = previousTeacherEmail;
           targetUsername.value = previousTeacherEmail;
           teacherChangeEmailSnackbar.close();
@@ -1036,7 +809,7 @@ function loggedIn(initialUser) {
       teacherRetypeEmailError.style.display = "block";
       tempEmailInput = teacherChangeEmailInput.value;
 
-      teacherChangeEmailLabel.innerHTML = "Target Email";
+      teacherChangeEmailLabel.innerHTML = "Teacher Email";
     }
     saveTeacherEmailButton.addEventListener(
       "click",
@@ -1057,8 +830,7 @@ function loggedIn(initialUser) {
                 teacherEmail: teacherChangeEmailInput.value,
                 uid: uid,
                 photoURL: user.photoURL,
-                isTeacher: user.isTeacher,
-                studentTime: user.studentTime
+                isTeacher: user.isTeacher
               })
               .then(function() {
                 db.collection("Users")
@@ -1106,7 +878,7 @@ function loggedIn(initialUser) {
                   .catch(err => {
                     console.log("Error getting document: ", err);
                   });
-                teacherChangeEmailLabel.innerHTML = "Target Email";
+                teacherChangeEmailLabel.innerHTML = "Teacher Email";
                 user.teacherEmail = teacherChangeEmailInput.value;
                 targetUsername.value = teacherChangeEmailInput.value;
                 settingsModal.click();
@@ -1140,12 +912,9 @@ function loggedIn(initialUser) {
       ""
     );
     listenSelf();
-
+    keyboardListener();
     socket.on("connect", () => {
       console.log("Found Node Server, setting self as classroom");
-      targetIcon.style.display = "none";
-      targetUsername.hidden = true;
-      callButton.style.display = "none";
       isStudent = false;
     });
   }
@@ -1235,7 +1004,7 @@ function loggedIn(initialUser) {
         //add motor right
         socket.emit("right");
         break;
-      case "q":
+      case "c":
         socket.emit("stop");
         break;
       case "Enter":
@@ -1273,11 +1042,10 @@ function loggedIn(initialUser) {
   }
   function onTimer() {
     if (minuteTimerAct) {
-      document.getElementById("timerText").innerHTML = "Try Again In " + minuteTimer.toString();
-
+      document.getElementById("timerText").innerHTML = minuteTimer.toString();
       minuteTimer--;
       if (minuteTimer < 0) {
-        minuteTimer = user.studentTime;
+        minuteTimer = 30;
         minuteTimerAct = false;
         coolDown = false;
         document.getElementsByClassName("timer-group")[0].style.display =
