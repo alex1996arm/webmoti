@@ -128,8 +128,22 @@ function sendNotification(event)
 
   // Let's check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    var notification = new Notification("Upcoming event: "+event.summary +" at "+event.start.dateTime);
+    //Let's create a notification for each event
+    var minutesTill = Math.round((Date.parse(event.start.dateTime)-Date.now())/60000);
+    var notifTitle ="Upcoming: "+event.summary+" in "+minutesTill+" minutes";
+    var eventLoc = "";
+    if(event.location)
+    {
+      eventLoc = event.location;
+    }
+    var notifBody = eventLoc+"\n"+event.description;
+    var notifImageUrl = "img/baseline_alarm.png";
+    var options =
+      {
+        body: notifBody,
+        icon: notifImageUrl
+      };
+    var notification = new Notification(notifTitle,options);
   }
 
   // Otherwise, we need to ask the user for permission
@@ -137,7 +151,7 @@ function sendNotification(event)
     Notification.requestPermission().then(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        var notification = new Notification("Hi there!");
+        var notification = new Notification("Thank you for allowing notifications!");
       }
     });
   }
