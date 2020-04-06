@@ -1,3 +1,4 @@
+// Unique firebase config object
 var firebaseConfig = {
   apiKey: "AIzaSyA51GCqxDw7AuvfNmCcWjbGLtClJNFaUxE",
   authDomain: "webmotia.firebaseapp.com",
@@ -6,7 +7,7 @@ var firebaseConfig = {
   storageBucket: "webmotia.appspot.com",
   messagingSenderId: "606747164317",
   appId: "1:606747164317:web:952c390708ccb09d",
-  scopes: [
+  scopes: [ 
     "email",
     "profile",
     "https://www.googleapis.com/auth/calendar.events"
@@ -16,16 +17,7 @@ var firebaseConfig = {
   ],
   clientId: "1053696254964-r66l5j9ll5p8rt5gukocqo5qpseds8q0.apps.googleusercontent.com"
 };
-// var firebaseConfig = {
-//   apiKey: "AIzaSyA8BvFlnJpqxnjoB3zeG355JA_SVkjGZGc",
-//   authDomain: "tempwebmoti.firebaseapp.com",
-//   databaseURL: "https://tempwebmoti.firebaseio.com",
-//   projectId: "tempwebmoti",
-//   storageBucket: "tempwebmoti.appspot.com",
-//   messagingSenderId: "640467167824",
-//   appId: "1:640467167824:web:2aa34c043975558953bf55",
-//   measurementId: "G-VWENQE1FSM"
-// };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -39,37 +31,19 @@ var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
       // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
+      // Firebase ID used later
       var id = firebase.auth().currentUser.uid;
-      console.log(id);
       db.collection("Users")
         .doc(authResult.user.email)
         .get()
         .then(doc => {
+          // If User already exists, redirect
           if (doc.exists) {
-            let data = doc.data();
-            let teacherEmail = data.teacherEmail;
-            let isTeacher = data.isTeacher;
-            let status = data.status;
-            db.collection("Users")
-              .doc(authResult.user.email)
-              .set({
-                email: authResult.user.email,
-                teacherEmail: teacherEmail,
-                displayName: authResult.user.displayName,
-                uid: id,
-                photoURL: authResult.user.photoURL,
-                isTeacher: isTeacher
-
-              })
-              .then(function() {
-                window.location.replace("index.html");
-              })
-              .catch(function(error) {
-                console.error("Error adding document: ", error);
-              });
+            window.location.replace("index.html");
+              
           } else {
+            // If not, then store new User information with default variables
+            // and then redirect
             db.collection("Users")
               .doc(authResult.user.email)
               .set({
@@ -78,8 +52,14 @@ var uiConfig = {
                 displayName: authResult.user.displayName,
                 uid: id,
                 photoURL: authResult.user.photoURL,
-                isTeacher: "False"
-
+                isTeacher: "False",
+                studentTime: "30",
+                beforeClassStartNotification: "False",
+                beforeClassEndNotification: "False",
+                notificationFrequency: 2,
+                notificationRange: 10,
+                vibrate: "True",
+                sound: "True"
               })
               .then(function() {
                 window.location.replace("index.html");
