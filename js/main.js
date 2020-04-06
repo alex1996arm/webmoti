@@ -1,4 +1,6 @@
 var mainUser;
+var user;
+
 // Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyA51GCqxDw7AuvfNmCcWjbGLtClJNFaUxE",
@@ -94,7 +96,7 @@ function logOut() {
  * @param {object} initialUser object that holds all user data
  */
 function loggedIn(initialUser) {
-  var user = initialUser;
+  user = initialUser;
   //Initialize Socket.io
   var socket = io("http://localhost:3000", { reconnectionAttempts: 3 });
 

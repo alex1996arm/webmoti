@@ -24,7 +24,7 @@
 
     <script src="js/socket.io.js"></script>
     <link href="css/main.css" rel="stylesheet" media="screen" />
-    
+
     <script src="js/zoom.js"></script>
 
     <!-- jQuery -->
@@ -103,7 +103,7 @@
             </div>
           </div>
         </div>
-      
+
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
@@ -151,7 +151,7 @@
                 </div>
                 <div id="teacher-change-email-error" class="change-email-error"></div>
               </div>
-              
+
               <div id="teacher-change-buttons">
                   <button id="edit-teacher-email-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
                     <span id="edit-teacher-email-span" class="mdc-button__label">save</span>
@@ -193,7 +193,7 @@
           <div id="notifications-settings-body" class="modal-body-post-tabs" style="display: none;">
             <div class="notification-type">
               <div class="notification-text">
-                Before event starts 
+                Before event starts
               </div>
               <div class="mdc-form-field">
                 <div class="mdc-checkbox">
@@ -215,7 +215,7 @@
             </div>
             <div class="notification-type">
               <div class="notification-text">
-                Before event ends 
+                Before event ends
               </div>
               <div class="mdc-form-field">
                 <div class="mdc-checkbox">
@@ -313,7 +313,7 @@
         <div class="modal-footer">
         </div>
       </div>
-      
+
       </div>
       <aside class="mdc-drawer mdc-drawer--modal">
           <div class="mdc-drawer__header">
@@ -359,7 +359,7 @@
               >
               <span class="mdc-list-item__text">Logout</span>
             </a>
-            
+
           </nav>
         </div>
       </aside>
@@ -368,7 +368,7 @@
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
       >
         <button
-          tabindex="1" 
+          tabindex="1"
           id="drawer-open-button"
           class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
           style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
@@ -382,7 +382,7 @@
             <div class="user-group">
                 <div id="user-photo-element" class="photo-element">
                     <div id="user-photo-div" class="photo-div"></div>
-                    <div id="user-photo-state" class="photo-state"></div>  
+                    <div id="user-photo-state" class="photo-state"></div>
                 </div>
                 <div id="usernameTextInput" class="mdc-text-field">
                     <input
@@ -395,7 +395,7 @@
                     <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
                     <div class="mdc-line-ripple"></div>
                   </div>
-            </div>           
+            </div>
           </li>
           <li >
             <div class="user-group">
@@ -413,7 +413,7 @@
                     <label id="targetUsernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="targetUsername"></label>
                     <div class="mdc-line-ripple"></div>
                 </div>
-            </div>              
+            </div>
           </li>
 
           <li>
@@ -440,7 +440,7 @@
             </div>
 
           </li>
-          
+
         </ul>
       </nav>
       <div id='hand'></div>
@@ -466,25 +466,28 @@
         <video id="localVideo" autoplay="true" muted="true"></video>
       </div>
       <div id="stage"></div>
-      
-        
+
+
     </div>
     <div id="loggedOutElements"></div>
     <!--  Scripts-->
     <!-- This file is automatically added/served when running "node index.js". -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/notification.js"></script>
     <script src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    
+
   </body>
 </html>
