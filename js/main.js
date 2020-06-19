@@ -101,6 +101,7 @@ function loggedIn(initialUser) {
   var socket = io("http://localhost:3000", { reconnectionAttempts: 3 });
 
   //Initializing the variables
+{  
   var teacherUser;
   var email = user.email;
   const constraints = { audio: true, video: true };
@@ -115,13 +116,17 @@ function loggedIn(initialUser) {
   var hangupButton = document.getElementById("hangup");
   var callButton = document.getElementById("call");
   var drawerLogoutButton = document.getElementById("drawer-logout-button");
+}
 
   // MDC drawer setup
+{
   var drawer = mdc.drawer.MDCDrawer.attachTo(
     document.querySelector(".mdc-drawer")
   );
   var drawerList = new mdc.list.MDCList(document.getElementById("drawer-list"));
+}
   // header setup
+{
   var drawerHeaderName = document.getElementById("drawer-header-name");
   var drawerHeaderEmail = document.getElementById("drawer-header-email");
   var drawerSettingsButton = document.getElementById("drawer-settings-button");
@@ -132,10 +137,12 @@ function loggedIn(initialUser) {
   const usernameTextInput = new mdc.textField.MDCTextField(
     document.querySelector("#usernameTextInput")
   );
+  }
   // Allow drawer to open
   var drawerOpenButton = document.getElementById("drawer-open-button");
 
   // settgings modal
+{  
   var settingsModal = document.getElementById("settings-modal");
   var settingsSpan = document.getElementsByClassName("close")[0];
   const teacherChangeEmailTextInput = new mdc.textField.MDCTextField(
@@ -183,37 +190,44 @@ function loggedIn(initialUser) {
   const teacherImproperChangeEmailSnackbar = new mdc.snackbar.MDCSnackbar(
     document.getElementById("improper-teacher-change-email-snackbar")
   );
+}
 
   // Notifications settings
+{
   var beforeStartCheckbox = document.getElementById("before-start-checkbox");
   var beforeEndCheckbox = document.getElementById("before-end-checkbox");
   var vibrateCheckBox = document.getElementById("vibrate-checkbox");
   var soundCheckbox = document.getElementById("sound-checkbox");
 
-  var setNotifRangeInputFields = new mdc.textField.MDCTextField(
-    document.getElementById("set-notification-range-input-fields")
-  );
-  var setNotifFrequencyInputFields = new mdc.textField.MDCTextField(
-    document.getElementById("set-notification-frequency-input-fields")
-  );
-
-  var setNotifRangeInput = document.getElementById("set-notification-range");
-  var setNotifFrequencyInput = document.getElementById(
-    "set-notification-frequency"
-  );
+  // var setNotifRangeInputFields = new mdc.textField.MDCTextField(
+  //   document.getElementById("set-notification-range-input-fields")
+  // );
+  // var setNotifFrequencyInputFields = new mdc.textField.MDCTextField(
+  //   document.getElementById("set-notification-frequency-input-fields")
+  // );
+  
+  // *** UNCOMMENT ***
+  // var setNotifRangeInput = document.getElementById("set-notification-range");
+  // var setNotifFrequencyInput = document.getElementById(
+  //   "set-notification-frequency"
+  // );
 
   var saveNotifSettingsButton = document.getElementById(
     "notification-setting-save-button"
   );
+  }
 
   // Profile photos
+{  
   var userProfilePhoto = document.getElementById("user-photo-div");
   var teacherProfilePhoto = document.getElementById("teacher-photo-div");
 
   var userProfileState = document.getElementById("user-photo-state");
   var teacherProfileState = document.getElementById("teacher-photo-state");
+}
 
   // Calendar
+{
   var calendarModal = document.getElementById("calendar-modal");
   var calendar;
 
@@ -255,6 +269,7 @@ function loggedIn(initialUser) {
   var targetUsernameLabelMainText;
   var targetUsernameLabelSelectedText;
 
+}
   // Initialize functions and variables
   initialize();
 
@@ -744,8 +759,9 @@ function loggedIn(initialUser) {
    * Function to save notification settings once clicked
    */
   saveNotifSettingsButton.addEventListener("click", () => {
-    let freqVal = setNotifFrequencyInput.value;
-    let rangeVal = setNotifRangeInput.value;
+    // ************* UNCOMMENT BACK TO let freqVal = setNotifFrequencyInput.value;    let rangeVal = setNotifRangeInput.value;
+    let freqVal = 0;
+    let rangeVal = 0;
     // If input in correct range
     if (freqVal >= 1 && freqVal <= 5 && rangeVal >= 1 && rangeVal <= 15) {
       // Valid, now update documents and local variables
@@ -762,6 +778,7 @@ function loggedIn(initialUser) {
       if (endNotif) endUpload = "True";
       if (vibrateNotif) vibrateUpload = "True";
       if (soundNotif) soundUpload = "True";
+      // *************************** CHANGE BACK TO notificationFrequency: freqVal, notificationRange: rangeVal,
       db.collection("Users")
         .doc(user.email)
         .set({
@@ -774,16 +791,16 @@ function loggedIn(initialUser) {
           studentTime: user.studentTime,
           beforeClassStartNotification: startUpload,
           beforeClassEndNotification: endUpload,
-          notificationFrequency: freqVal,
-          notificationRange: rangeVal,
+          notificationFrequency: 0,
+          notificationRange: 0,
           vibrate: vibrateUpload,
           sound: soundUpload
         })
         .then(function() {
           user.beforeClassEndNotification = startUpload;
           user.beforeClassEndNotification = endUpload;
-          user.notificationFrequency = freqVal;
-          user.notificationRange = rangeVal;
+          user.notificationFrequency = 0;
+          user.notificationRange = 0;
           user.vibrate = vibrateUpload;
           user.sound = soundUpload;
           settingsModal.click();
@@ -864,8 +881,9 @@ function loggedIn(initialUser) {
     if (user.vibrate == "True") vibrateCheckBox.checked = true;
     if ((user.sound = "True")) soundCheckbox.checked = true;
 
-    setNotifRangeInput.value = user.notificationRange;
-    setNotifFrequencyInput.value = user.notificationFrequency;
+    // *** UNCOMMENT WHEN DONE ***
+    // setNotifRangeInput.value = user.notificationRange;
+    // setNotifFrequencyInput.value = user.notificationFrequency;
     // Target Label Set
     if (user.isTeacher == "False") {
       targetUsernameLabelMainText = "Home Classroom";
@@ -998,8 +1016,9 @@ function loggedIn(initialUser) {
           beforeEndCheckbox.checked = true;
         if (user.vibrate == "True") vibrateCheckBox.checked = true;
         if ((user.sound = "True")) soundCheckbox.checked = true;
-        setNotifRangeInput.value = user.notificationRange;
-        setNotifFrequencyInput.value = user.notificationFrequency;
+        // *** UNCOMMENT WHEN DONE ***
+        // setNotifRangeInput.value = user.notificationRange;
+        // setNotifFrequencyInput.value = user.notificationFrequency;
         // Set tab index's
         drawerOpenButton.tabIndex = "1";
         targetUsername.tabIndex = "2";
