@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  margin-right: -15vw;
+  margin-bottom: 12vh;
+  }
+
+.box-minmax {
+  width: 235px;
+  margin-top: -16px;
+  margin-right: 15vw;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #8A2BE2; }
+  /* .box-minmax span:first-child {
+    margin-left: 10px; } */
+
+.range-slider {
+  margin-top: 5vh; 
+  margin-right: 15vw; }  /* margin top for the whole slider and number and all */
+
+.rs-range {
+  margin-top: 12px;
+  width: 200px;
+  -webkit-appearance: none; }
+  .rs-range:focus {
+    outline-style: none; }
+  .rs-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;  /* used to be 1px. this is thickness of track */
+    cursor: pointer;
+    box-shadow: none;
+    background: #8A2BE2;
+    border-radius: 0px;
+    border: 0px solid #010101; }
+  .rs-range::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #8A2BE2;
+    border-radius: 0px;
+    border: 0px solid #010101; }
+  .rs-range::-webkit-slider-thumb {  /* actual thumb */
+    box-shadow: none;
+    border: 0px solid #ffffff;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    height: 22px;
+    width: 12px;
+    border-radius: 22px;
+    background:#8A2BE2;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10px; }  /* used to be -20px */
+  .rs-range::-moz-range-thumb {
+    box-shadow: none;
+    border: 0px solid #ffffff;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    height: 22px;
+    width: 12px;
+    border-radius: 22px;
+    background:#8A2BE2;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10px; }
+  .rs-range::-moz-focus-outer {
+    border: 0; }
+
+.rs-label {
+  position: relative;
+  transform-origin: center center;
+  display: block;
+  width: 40px;  /* actual size of the ball */
+  height: 40px;
+  background: transparent;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  border: 2px solid#8A2BE2;
+  margin-top: 20px;
+  margin-left: 83px;
+  left: attr(value); 
+  color: #8A2BE2;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 18px; }
+  .rs-label::after {
+    content: 'time(s)';
+    display: block;
+    font-size: 8px;
+    letter-spacing: 0.07em;
+    margin-top: -2px; }
