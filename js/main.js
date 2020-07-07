@@ -101,7 +101,7 @@ function loggedIn(initialUser) {
   var socket = io("http://localhost:3000", { reconnectionAttempts: 3 });
 
   //Initializing the variables
-{  
+
   var teacherUser;
   var email = user.email;
   const constraints = { audio: true, video: true };
@@ -116,7 +116,7 @@ function loggedIn(initialUser) {
   var hangupButton = document.getElementById("hangup");
   var callButton = document.getElementById("call");
   var drawerLogoutButton = document.getElementById("drawer-logout-button");
-}
+
 
   // MDC drawer setup
 {

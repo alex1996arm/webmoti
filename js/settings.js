@@ -84,3 +84,24 @@ settingsTabs.forEach(element => {
     }
   });
 })
+
+// ClockPicker initialization
+var settings_timepicker_input = $('#settings-timepicker').clockpicker({
+    placement: 'right',
+    align: 'left',
+    autoclose: true,
+    'default': '00:00',
+});
+
+// Slider-Input box synchronization
+let set_notification_frequency_slider = document.getElementById("set-notification-frequency-slider");
+let set_notification_frequency = document.getElementById("set-notification-frequency");
+set_notification_frequency.value = set_notification_frequency_slider.value;
+
+set_notification_frequency_slider.addEventListener("click", () => {
+  set_notification_frequency.value = set_notification_frequency_slider.value;
+});
+set_notification_frequency.addEventListener("input", () => {
+  if(set_notification_frequency.value<6 && set_notification_frequency.value>0) {set_notification_frequency_slider.value = set_notification_frequency.value;}
+  else{alert("Please enter a number between 1 and 5");};
+});

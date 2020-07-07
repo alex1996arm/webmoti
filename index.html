@@ -41,7 +41,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
+
+    <!-- Timepicker -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <link rel="stylesheet" href="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css"></link>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
     <!-- FullCalendar -->
     <link href="fullcalendar/core/main.css" rel="stylesheet" />
     <link href="fullcalendar/daygrid/main.css" rel="stylesheet" />
@@ -254,42 +260,23 @@
               </div>
             </div>
             <div class="notification-type">
-              <div class="notification-text">How many notifications do you want? (1-5)</div>
+              <div class="notification-text">How many hours and minutes before?</div>
+              <input class="form-control space" id="settings-timepicker" value="" placeholder="Click to select">
+            </div> 
+            <div class="notification-type">
+              <div class="notification-text">How many notifications within set time? (1-5)</div>
               <div class="range-slider">
                 <span class="num">1</span>
-                <input class="rs-range" type="range" min="1" max="5"> <span class="num">5</span>
+                <input class="rs-range" type="range" min="1" max="5" id="set-notification-frequency-slider"> <span class="num">5</span>
                 </div>
                 <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
-                  <input maxlength="2" type="text" id="set-notification-frequency" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                  <input maxlength="2" type="text" id="set-notification-frequency" value="0" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
                   <div class="mdc-notched-outline mdc-notched-outline--upgraded">
                     <div class="mdc-notched-outline__leading"></div>
                     <div class="mdc-notched-outline__trailing"></div>
                   </div>
                 </div>
               </div> 
-            <div class="notification-type">
-              <div class="notification-text">How many minutes before? (1-60)</div>
-              <input class="form-control space" id="single-input" value="" placeholder="Select the minutes">
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
-<link rel="stylesheet" href="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css"></link>
-<script type="text/javascript">
-var input = $('#single-input').clockpicker({
-    placement: 'right',
-    align: 'left',
-    autoclose: true,
-    'default': 'now'
-});
-
-// Manually toggle to the minutes view
-$('#check-minutes').click(function(e){
-    // Have to stop propagation here
-    e.stopPropagation();
-    input.clockpicker('show')
-            .clockpicker('toggleView', 'minutes');
-});
-</script>
-            </div> 
             <div class="notification-type">
               <div class="notification-text">
                 <div class="notification-icon">
