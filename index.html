@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Webmoti</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500&display=swap" rel="stylesheet">
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+
+    <script src="js/socket.io.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/clock.css">
+
+    <script src="js/zoom.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- Material Design -->
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <!-- FullCalendar -->
+    <link href="fullcalendar/core/main.css" rel="stylesheet" />
+    <link href="fullcalendar/daygrid/main.css" rel="stylesheet" />
+    <link href="fullcalendar/timegrid/main.css" rel="stylesheet" />
+
+    <script src="fullcalendar/core/main.js"></script>
+    <script src="fullcalendar/daygrid/main.js"></script>
+    <script src="fullcalendar/timegrid/main.js"></script>
+  </head>
+  <body>
+    <div id="logged-in-elements" style="display: none">
+      <!-- Snackbars -->
+      <div id="change-teacher-email-snackback" class="mdc-snackbar">
+        <div class="mdc-snackbar__surface">
+          <div class="mdc-snackbar__label"
+               role="status"
+               aria-live="polite">
+            Teacher's email changed
+          </div>
+          <div class="mdc-snackbar__actions">
+            <button id="undo-change-teacher-email-button" type="button" class="mdc-button mdc-snackbar__action">Undo</button>
+            <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+          </div>
+        </div>
+      </div>
+      <div id="teacher-email-change-different-snackbar" class="mdc-snackbar">
+        <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+          <div class="mdc-snackbar__actions">
+            <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+          </div>
+          <div class="mdc-snackbar__label"
+               role="status"
+               aria-live="polite"
+               style="color: white !important;">
+            Emails not mactching
+          </div>
+          <div class="mdc-snackbar__actions">
+            <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="calendar-modal" class="calendar-modal">
+        <div style="width: 820px; background-color: white !important;" id="calendar"></div>
+      </div>
+
+      </div>
+      <div style="display: none;" id="settings-modal" class="modal">
+        <div id="improper-teacher-change-email-snackbar" class="mdc-snackbar">
+          <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+            <div class="mdc-snackbar__actions">
+              <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+            </div>
+            <div class="mdc-snackbar__label"
+                 role="status"
+                 aria-live="polite"
+                 style="color: white !important;">
+              Improper email format
+            </div>
+            <div class="mdc-snackbar__actions">
+              <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+            </div>
+          </div>
+        </div>
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div id="modal-header-container">
+            <h2 id="modal-header-title">Settings</h2>
+          </div>
+          <div id="modal-header-hint">
+            Emojis can be added in Google calendar titles and will appear in WebMoti notifications if added to Google calendar title.
+          </div>
+          <span class="close" style="user-select: none">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div id="settings-tabs">
+            <div tabindex="5" id="settings-email-tab" class="settings-tab settings-tab-selected">
+              <p class="settings-tab-text">
+                Email
+              </p>
+              <i class="material-icons icon">&#xE0BE;</i>
+            </div tabindex="5">
+            <div tabindex="6" id="settings-teacher-tab" class="settings-tab">
+              <p class="settings-tab-text">
+                Time
+              </p>
+              <i class="material-icons icon">&#xe192;</i>
+            </div tabindex="6">
+            <div tabindex="7" id="settings-notif-tab" class="settings-tab">
+              <p class="settings-tab-text">
+                Notification
+              </p>
+              <i class="material-icons icon">&#xe7f4;</i>
+            </div tabindex="7">
+            <div tabindex="8" id="settings-device-tab" class="settings-tab">
+              <p class="settings-tab-text">
+                Devices
+              </p>
+            </div tabindex="8">
+          </div>
+          <div id="settings-email-body" class="modal-body-post-tabs">
+            <div id="modal-change-teacher-email-text">
+              <h4>Change target email</h4>
+            </div>
+            <div id="modal-change-teacher-email">
+              <div class="teacher-input-div">
+                <div id="teacher-input-text-field" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined">
+                  <input type="text" id="teacher-change-email-input" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                  <div id="teacher-change-email-notch" class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div id="teacher-change-email-width" class="mdc-notched-outline__notch" style="">
+                      <label id="teacher-input-label-field" class="mdc-floating-label" for="text-field-outlined-shape-one" style="">Email</label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div>
+                <div id="teacher-change-email-error" class="change-email-error"></div>
+              </div>
+
+              <div id="teacher-change-buttons">
+                  <button id="edit-teacher-email-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
+                    <span id="edit-teacher-email-span" class="mdc-button__label">save</span>
+                  </button>
+              </div>
+            </div>
+            <div class="teacher-input-div">
+              <div id="teacher-input-retype-text-field" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined">
+                <input type="text" id="teacher-retype-email-input" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                <div id="teacher-retype-email-notch" class="mdc-notched-outline mdc-notched-outline--upgraded">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div id="teacher-retype-email-width" class="mdc-notched-outline__notch" style="">
+                    <label id="teacher-input-retype-label-field" class="mdc-floating-label" for="text-field-outlined-shape-one" style="">Retype Email</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div id="teacher-change-retype-email-error" class="change-email-error"></div>
+            </div>
+          </div>
+          <div id="settings-teacher-body" class="modal-body-post-tabs" style="display: none;">
+            <div id="set-student-div">
+              <div class="notification-icon">
+              <p id="set-student-div-text"><i class="material-icons notif">timelapse</i>Set hand wait time (sec.)</p>
+              </div>
+              <div id="set-student-time-group" class="teacher-input-div">
+                <div id="set-student-time-input-text-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined">
+                  <input maxlength="2" type="text" id="set-student-input" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                  <div id="set-student-notch" class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div>
+              </div>
+              <button id="set-student-time-save-button" disabled class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
+                  <span id="set-student-time-save-text" class="mdc-button__label">save</span>
+              </button>
+            </div>
+            <div id="set-student-error" class="set-time-error"></div>
+          </div>
+          <div id="settings-notif-body" class="modal-body-post-tabs" style="display: none;">
+            <div class="notification-type">
+              <div class="notification-text">
+                <div class="notification-img">
+                  <img src="./img/starts.png" class= "notif" height="30" width="28">
+                  Before event starts
+                </div>
+                </div> 
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                  <input type="checkbox"
+                         class="mdc-checkbox__native-control"
+                         id="before-start-checkbox"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark-path"
+                            fill="none"
+                            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                  <div class="mdc-checkbox__ripple"></div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-type">
+              <div class="notification-text">
+                <div class="notification-img">
+                  <img src="./img/ends.png" class= "notif" height="30" width="28">
+                Before event ends
+                </div>
+              </div>
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                  <input type="checkbox"
+                         class="mdc-checkbox__native-control"
+                         id="before-end-checkbox"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark-path"
+                            fill="none"
+                            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                  <div class="mdc-checkbox__ripple"></div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-type">
+              <div class="notification-text">How many notifications do you want? (1-5)</div>
+              <div class="range-slider">
+                <span class="num">1</span>
+                <input class="rs-range" type="range" min="1" max="5"> <span class="num">5</span>
+                </div>
+                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
+                  <input maxlength="2" type="text" id="set-notification-frequency" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                  <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div>
+              </div> 
+            <div class="notification-type">
+              <div class="notification-text">How many minutes before? (1-60)</div>
+              <input class="form-control space" id="single-input" value="" placeholder="Select the minutes">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<link rel="stylesheet" href="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css"></link>
+<script type="text/javascript">
+var input = $('#single-input').clockpicker({
+    placement: 'right',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+});
+
+// Manually toggle to the minutes view
+$('#check-minutes').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+            .clockpicker('toggleView', 'minutes');
+});
+</script>
+            </div> 
+            <div class="notification-type">
+              <div class="notification-text">
+                <div class="notification-icon">
+                  <i class="material-icons notif">notifications_active</i>Vibrate
+                  </div>
+              </div>
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                  <input type="checkbox"
+                         class="mdc-checkbox__native-control"
+                         id="vibrate-checkbox"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark-path"
+                            fill="none"
+                            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                  <div class="mdc-checkbox__ripple"></div>
+                </div>
+              </div>
+            </div>
+            <div class="notification-type">
+              <div class="notification-text">
+                <div class="notification-icon">
+                  <i class="material-icons notif">volume_up</i>Sound
+                  </div>
+              </div>
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                  <input type="checkbox"
+                         class="mdc-checkbox__native-control"
+                         id="sound-checkbox"/>
+                  <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                      <path class="mdc-checkbox__checkmark-path"
+                            fill="none"
+                            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                  </div>
+                  <div class="mdc-checkbox__ripple"></div>
+                </div>
+              </div>
+            </div>
+                <!-- <div class="notification-text">
+                  How many times do you want these notifications to happen? (1-5)
+                </div>
+                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
+                  <input maxlength="2" type="text" id="set-notification-frequency" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
+                  <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div> -->
+              
+            <div class="notification-save-div">
+              <button id="notification-setting-save-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
+                <span class="mdc-button__label">save</span>
+              </button>
+            </div>
+          </div>
+          <div id="settings-device-body" class="modal-body-post-tabs" style="display: none;">
+            <div id="set-student-div">
+              <p id="set-student-div-text">Devices</p>
+              <button id="set-student-time-save-button" disabled class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
+                  <span id="set-student-add-device" class="mdc-button__label">Add Device</span>
+              </button>
+            </div>
+            <div id="set-student-error" class="set-time-error"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+
+      </div>
+      <aside class="mdc-drawer mdc-drawer--modal">
+          <div class="mdc-drawer__header">
+            <h3 id="drawer-header-name" class="mdc-drawer__title">Mail</h3>
+            <h6 id="drawer-header-email" class="mdc-drawer__subtitle">email@material.io</h6>
+          </div>
+        <div class="mdc-drawer__content">
+          <nav id="drawer-list" class="mdc-list">
+            <a
+              id="drawer-home-button"
+              class="mdc-list-item mdc-list-item--activated"
+              href=""
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >home</i
+              >
+              <span class="mdc-list-item__text">Main</span>
+            </a>
+            <hr class="mdc-list-divider">
+            <a
+              id="drawer-settings-button"
+              class="mdc-list-item"
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >settings</i
+              >
+              <span class="mdc-list-item__text">Settings</span>
+              <a
+              id="drawer-logout-button"
+              class="mdc-list-item"
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >power_settings_new</i
+              >
+              <span class="mdc-list-item__text">Logout</span>
+            </a>
+
+          </nav>
+        </div>
+      </aside>
+      <div class="mdc-drawer-scrim"></div>
+      <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
+      >
+        <button
+          tabindex="1"
+          id="drawer-open-button"
+          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
+          style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
+        >
+          menu</button>
+          <span class="mdc-top-app-bar__title">Webmoti</span>
+      </section>
+      <nav class="main-nav" role="navigation">
+        <ul class="main-nav-list">
+          <li >
+            <div class="user-group">
+                <div id="user-photo-element" class="photo-element">
+                    <div id="user-photo-div" class="photo-div"></div>
+                    <div id="user-photo-state" class="photo-state"></div>
+                </div>
+                <div id="usernameTextInput" class="mdc-text-field">
+                    <input
+                      disabled
+                      placeholder="Pending"
+                      id="username"
+                      type="text"
+                      class="mdc-text-field__input"
+                    />
+                    <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+            </div>
+          </li>
+          <li >
+            <div class="user-group">
+                <div id="teacher-photo-element" class="photo-element">
+                    <div id="teacher-photo-div" class="photo-div"></div>
+                    <div id="teacher-photo-state" class="photo-state"></div>
+                </div>
+                <div id="targetUsernameTextInput" class="mdc-text-field">
+                    <input
+                    tabindex="2"
+                    id="targetUsername"
+                    type="text"
+                    class="mdc-text-field__input"
+                    />
+                    <label id="targetUsernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="targetUsername"></label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
+            </div>
+          </li>
+
+          <li>
+            <a
+              tabindex="3"
+              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
+              id="call" style="background-color: #bd1206 !important; height: 50px !important;"
+              ><i class="material-icons mdc-button__icon">call</i>Call</a
+            >
+          </li>
+          <li>
+            <a
+              tabindex="4"
+              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
+              id="hangup" style="background-color: #08138c !important; height: 50px !important;"
+              ><i class="material-icons mdc-button__icon">call_end</i>Hang Up</a
+            >
+          </li>
+          <li>
+            <div id="calendar-widget">
+              <i class="material-icons" style="user-select: none;">
+                calendar_today
+                </i>
+            </div>
+
+          </li>
+
+        </ul>
+      </nav>
+      <div id='hand'></div>
+      <div class="timer-group">
+        <div class="timer minute">
+          <div class="hand"><span class="hand-span"></span></div>
+          <div class="hand"><span class="hand-span"></span></div>
+        </div>
+        <div class="face">
+          <h2 id="timerText">Please wait </h2>
+          <!-- <p id="spamTimer"></p> -->
+        </div>
+      </div>
+      <div class="stage">
+        <video
+          tabindex="-1"
+          id="remoteVideo"
+          autoplay="true"
+          class="z-depth-2"
+          controls
+          style="width: 1280px; height: 720px;"
+        ></video>
+        <video id="localVideo" autoplay="true" muted="true"></video>
+      </div>
+      <div id="stage"></div>
+
+
+    </div>
+    <div id="loggedOutElements"></div>
+    <!--  Scripts-->
+    <!-- This file is automatically added/served when running "node index.js". -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="https://apis.google.com/js/api.js"
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
+  </body>
+</html>
