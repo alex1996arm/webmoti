@@ -835,3 +835,34 @@ input {
     color: #018786;
     font-size: 18px;
   }
+
+  /* App Bars: Top */ 
+  .main-nav {
+    padding-top: 50px;
+  }
+
+  .mdc-top-app-bar__title {
+    color: white;
+  }
+
+  .icon-button {
+    font-size: 1rem;
+    color: white;
+    margin-right: 0.3rem;
+
+  }
+
+  .icon-button:hover {
+    border: solid white 0.1rem;
+    padding-right: 0.9rem;
+  }
+
+  .icon-button a {
+    text-decoration: none;
+  }
+
+  .material-icons {
+    font-size: 15px;
+    margin-right: -13px;
+  }
+

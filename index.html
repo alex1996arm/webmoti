@@ -325,17 +325,6 @@
                 </div>
               </div>
             </div>
-                <!-- <div class="notification-text">
-                  How many times do you want these notifications to happen? (1-5)
-                </div>
-                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
-                  <input maxlength="2" type="text" id="set-notification-frequency" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
-                  <div class="mdc-notched-outline mdc-notched-outline--upgraded">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div> -->
-              
             <div class="notification-save-div">
               <button id="notification-setting-save-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
                 <span class="mdc-button__label">save</span>
@@ -363,64 +352,35 @@
             <h6 id="drawer-header-email" class="mdc-drawer__subtitle">email@material.io</h6>
           </div>
         <div class="mdc-drawer__content">
-          <nav id="drawer-list" class="mdc-list">
-            <a
-              id="drawer-home-button"
-              class="mdc-list-item mdc-list-item--activated"
-              href=""
-              aria-selected="true"
-            >
-              <i
-                class="material-icons mdc-list-item__graphic"
-                aria-hidden="true"
-                >home</i
-              >
-              <span class="mdc-list-item__text">Main</span>
-            </a>
-            <hr class="mdc-list-divider">
-            <a
-              id="drawer-settings-button"
-              class="mdc-list-item"
-              aria-selected="true"
-            >
-              <i
-                class="material-icons mdc-list-item__graphic"
-                aria-hidden="true"
-                >settings</i
-              >
-              <span class="mdc-list-item__text">Settings</span>
-              <a
-              id="drawer-logout-button"
-              class="mdc-list-item"
-              aria-selected="true"
-            >
-              <i
-                class="material-icons mdc-list-item__graphic"
-                aria-hidden="true"
-                >power_settings_new</i
-              >
-              <span class="mdc-list-item__text">Logout</span>
-            </a>
-
-          </nav>
         </div>
       </aside>
-      <div class="mdc-drawer-scrim"></div>
-      <section
-        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
-      >
-        <button
-          tabindex="1"
-          id="drawer-open-button"
-          class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
-          style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
-        >
-          menu</button>
-          <span class="mdc-top-app-bar__title">Webmoti</span>
-      </section>
+  
+  <div class="mdc-top-app-bar" style="height: 3rem;">
+    <div class="box-border mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <a class="mdc-top-app-bar__title" href="#">Webmoti</a>
+    </section>
+    <span class="icon-button">
+      <span class="material-icons mdc-icon-button">live_help</span>
+      <a class="mdc-top-app-bar__action-item" aria-label="how to use webmoti" href="#">How to use Webmoti</a></span>
+      <span class="icon-button"> 
+        <span class="material-icons mdc-icon-button">home</span>
+      <a class="mdc-top-app-bar__action-item" aria-label="Home" href="#">Home</a></span>
+      <span class="icon-button">
+        <span class="material-icons mdc-icon-button">person</span>
+        <a class="mdc-top-app-bar__action-item" aria-label="Profile" href="#">Profile</a></span>
+      <span class="icon-button">
+      <span class="material-icons mdc-icon-button">settings</span>
+      <a class="mdc-top-app-bar__action-item" aria-label="Settings" href="">Settings</a></span>
+        <span class="icon-button">
+        <span class="material-icons mdc-icon-button">power_settings_new</span>
+        <a class="mdc-top-app-bar__action-item" aria-label="Logout" href="#">Logout</a></span>
+  </div>
+</div>
+
       <nav class="main-nav" role="navigation">
         <ul class="main-nav-list">
-          <li >
+          <li>
             <div class="user-group">
                 <div id="user-photo-element" class="photo-element">
                     <div id="user-photo-div" class="photo-div"></div>
@@ -533,3 +493,4 @@
 
   </body>
 </html>
+
