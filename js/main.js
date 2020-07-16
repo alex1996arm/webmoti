@@ -314,8 +314,12 @@ function loggedIn(initialUser) {
   }
 
   //Adding an event listener to send our SDP info to the server
+  const welcomeStage = document.getElementById("welcome-stage");
+  const videoStage = document.getElementById("video-stage");
   callButton.addEventListener("click", call);
   function call() {
+    welcomeStage.style.display = "none";
+    videoStage.style.display = "block";
     createPeerConnection();
     mediaDetails = getMedia(pc);
   }
@@ -327,6 +331,8 @@ function loggedIn(initialUser) {
   hangupButton.addEventListener("click", hangup);
   function hangup() {
     console.log("Hanging up");
+    welcomeStage.style.display = "block";
+    videoStage.style.display = "none";
     if (pc) {
       pc.ontrack = null;
       pc.onremovetrack = null;
