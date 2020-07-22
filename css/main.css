@@ -832,7 +832,7 @@ input {
 }
 
 /* Top App Bar */ 
-
+ 
 .nav-styling a {
   text-decoration: none;
   color: white;
@@ -843,9 +843,8 @@ input {
 
 .nav-styling a:hover, a:active, a:focus {
   padding: 0.75rem;
-  color: rgba(98,0,238,.87); 
-  border-right: solid 3px rgba(98,0,238,.87);
-  border-left: solid 3px rgba(98,0,238,.87);
+  color: black; 
+  border-right: solid 3px black;
+  border-left: solid 3px black;
 }
-
 
