@@ -1,7 +1,7 @@
 @import "./login.css";
 
 body {
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow-x: hidden !important;
@@ -81,6 +81,7 @@ button {
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
+  padding-top: 5rem;
 }
 .main-nav-list {
   width: 80%;
@@ -106,17 +107,14 @@ li {
 }
 
 label {
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-right: 10px;
 }
 input {
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
 .custom-button {
   /* background-color: rgb(46, 36, 126) !important; */
-  font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
 .custom-button:focus {
@@ -233,7 +231,6 @@ input {
   color: black;
   float: right;
   font-size: 40px;
-  font-family: "Roboto", sans-serif;
   font-weight: 100;
 }
 
@@ -255,7 +252,6 @@ input {
 }
 
 #modal-header-container {
-  font-family: "Roboto", sans-serif;
   font-size: 25px;
   font-weight: 100;
 }
@@ -267,7 +263,6 @@ input {
   user-select: none;
   margin-top: 5px;
   width: 70%;
-  font-family: "Roboto", sans-serif;
   font-weight: 200;
   text-align: center;
   font-size: 15px;
@@ -321,7 +316,6 @@ input {
 .settings-tab-text {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
   font-size: 25px;
   font-weight: 300;
   user-select: none;
@@ -341,7 +335,6 @@ input {
 }
 /* Change teacher email tab body */
 #modal-change-teacher-email-text > * {
-  font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: 20px;
   height: fit-content;
@@ -368,7 +361,6 @@ input {
   color: #b00020;
   margin-top: 3px;
   margin-left: 5px;
-  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 #teacher-change-buttons {
@@ -634,7 +626,6 @@ input {
 #set-student-div-text {
   padding: 0;
   margin: 0;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 300;
 }
@@ -642,7 +633,6 @@ input {
   color: #b00020;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 
@@ -655,7 +645,6 @@ input {
   align-items: center;
 }
 .notification-text {
-  font-family: 'Lato', sans-serif; 
   font-size: 18px; 
   font-weight: 300;
 }
@@ -735,7 +724,6 @@ input {
 .calendar-button-theme {
   background-color: #000000 !important;
   font-size: 18px !important;
-  font-family: "Roboto", sans-serif !important;
   font-weight: 300 !important;
   display: flex !important;
   justify-content: center;
@@ -757,17 +745,14 @@ input {
 
 .fc-center > h2{
   font-size: 22px !important;
-  font-family: "Roboto", sans-serif !important;
   font-weight: 400 !important;
 }
 .fc-day-header > span {
   font-size: 18px !important;
-  font-family: "Roboto", sans-serif !important;
   font-weight: 300 !important;
 }
 .fc-axis > span {
   font-size: 18px !important;
-  font-family: "Roboto", sans-serif !important;
   font-weight: 300 !important;
 }
 .fc-today {
@@ -795,7 +780,7 @@ input {
     height: 3px;  /* used to be 1px. this is thickness of track */
     cursor: pointer;
     box-shadow: none;
-    background: #018786;
+    background:  rgba(98,0,238,.87);
     border-radius: 0px;
     border: 0px solid #010101; }
   .rs-range::-moz-range-track {
@@ -803,7 +788,7 @@ input {
     height: 1px;
     cursor: pointer;
     box-shadow: none;
-    background:#018786;
+    background: rgba(98,0,238,.87)86;
     border-radius: 0px;
     border: 0px solid #010101; }
   .rs-range::-webkit-slider-thumb {  
@@ -813,7 +798,7 @@ input {
     height: 18px; 
     width: 10px; 
     border-radius: 22px;
-    background:#018786;
+    background: rgba(98,0,238,.87);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -8px; }  
@@ -824,7 +809,7 @@ input {
     height: 22px;
     width: 12px;
     border-radius: 22px;
-    background:#018786;
+    background: rgba(98,0,238,.87);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -10px; }
@@ -832,6 +817,35 @@ input {
     border: 0; }
 
   .num {
-    color: #018786;
+    color: rgba(98,0,238,.87);
     font-size: 18px;
   }
+
+  .new-checkbox-color {
+    background-color: rgba(98,0,238,.87) !important;
+    border-color: rgba(98,0,238,.87) !important;
+  }
+
+.mdc-top-app-bar {
+  background-color: grey !important;
+  
+}
+
+/* Top App Bar */ 
+
+.nav-styling a {
+  text-decoration: none;
+  color: white;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-styling a:hover, a:active, a:focus {
+  padding: 0.75rem;
+  color: rgba(98,0,238,.87); 
+  border-right: solid 3px rgba(98,0,238,.87);
+  border-left: solid 3px rgba(98,0,238,.87);
+}
+
+

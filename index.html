@@ -8,17 +8,12 @@
     />
     <title>Webmoti</title>
     <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;800&display=swap" rel="stylesheet">
     <!-- CSS  -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
 
@@ -126,24 +121,25 @@
         <div class="modal-body">
           <div id="settings-tabs">
             <div tabindex="5" id="settings-email-tab" class="settings-tab settings-tab-selected">
+              <i class="material-icons icon">&#xE0BE;</i>
               <p class="settings-tab-text">
                 Email
               </p>
-              <i class="material-icons icon">&#xE0BE;</i>
             </div tabindex="5">
             <div tabindex="6" id="settings-teacher-tab" class="settings-tab">
+              <i class="material-icons icon">&#xe192;</i>
               <p class="settings-tab-text">
                 Time
               </p>
-              <i class="material-icons icon">&#xe192;</i>
             </div tabindex="6">
             <div tabindex="7" id="settings-notif-tab" class="settings-tab">
+              <i class="material-icons icon">&#xe7f4;</i>
               <p class="settings-tab-text">
                 Notification
               </p>
-              <i class="material-icons icon">&#xe7f4;</i>
             </div tabindex="7">
             <div tabindex="8" id="settings-device-tab" class="settings-tab">
+              <i class="material-icons icon" style="padding-right: 0.25rem;">devices</i>
               <p class="settings-tab-text">
                 Devices
               </p>
@@ -221,7 +217,7 @@
                   <input type="checkbox"
                          class="mdc-checkbox__native-control"
                          id="before-start-checkbox"/>
-                  <div class="mdc-checkbox__background">
+                  <div class="mdc-checkbox__background new-checkbox-color">
                     <svg class="mdc-checkbox__checkmark"
                          viewBox="0 0 24 24">
                       <path class="mdc-checkbox__checkmark-path"
@@ -246,7 +242,7 @@
                   <input type="checkbox"
                          class="mdc-checkbox__native-control"
                          id="before-end-checkbox"/>
-                  <div class="mdc-checkbox__background">
+                  <div class="mdc-checkbox__background new-checkbox-color">
                     <svg class="mdc-checkbox__checkmark"
                          viewBox="0 0 24 24">
                       <path class="mdc-checkbox__checkmark-path"
@@ -288,7 +284,7 @@
                   <input type="checkbox"
                          class="mdc-checkbox__native-control"
                          id="vibrate-checkbox"/>
-                  <div class="mdc-checkbox__background">
+                  <div class="mdc-checkbox__background new-checkbox-color">
                     <svg class="mdc-checkbox__checkmark"
                          viewBox="0 0 24 24">
                       <path class="mdc-checkbox__checkmark-path"
@@ -312,7 +308,7 @@
                   <input type="checkbox"
                          class="mdc-checkbox__native-control"
                          id="sound-checkbox"/>
-                  <div class="mdc-checkbox__background">
+                  <div class="mdc-checkbox__background new-checkbox-color">
                     <svg class="mdc-checkbox__checkmark"
                          viewBox="0 0 24 24">
                       <path class="mdc-checkbox__checkmark-path"
@@ -335,6 +331,7 @@
                     <div class="mdc-notched-outline__trailing"></div>
                   </div>
                 </div> -->
+
               
             <div class="notification-save-div">
               <button id="notification-setting-save-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
@@ -355,8 +352,80 @@
         <div class="modal-footer">
         </div>
       </div>
-
       </div>
+
+       <!-- new top app bar -->
+    <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row"> 
+
+          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <span class="mdc-top-app-bar__title">Webmoti</span>
+          </section>
+
+          <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <nav id="drawer-list" class="nav-styling">
+
+              <a
+            id="drawer-home-button"
+            class="nav-content"
+            href=""
+            aria-selected="true"
+          >
+              <i
+              class="material-icons"
+              aria-hidden="true"
+              >home</i
+            >
+            <span>Main</span>
+          </a>
+        
+          <a
+            id="drawer-webmoti_manual-button"
+            href=""
+            aria-selected="true"
+          >
+              <i
+              class="material-icons"
+              aria-hidden="true"
+              >info</i
+            >
+            <span>How to Use Webmoti</span>
+          </a>
+          
+          <a
+            id="drawer-settings-button"
+            href=""
+            aria-selected="true"
+          >
+              <i
+              class="material-icons"
+              aria-hidden="true"
+              >settings</i
+            >
+            <span>Settings</span>
+          </a>
+
+          <a
+            id="drawer-logout-button"
+            href=""
+            aria-selected="true"
+          >
+              <i
+              class="material-icons"
+              aria-hidden="true"
+              >power_settings_new</i
+            >
+            <span>Logout</span>
+          </a>
+            </nav>
+           
+          </section>
+
+          </div>
+            </header>  
+
+          <!-- original drawer -->
+<!-- 
       <aside class="mdc-drawer mdc-drawer--modal">
           <div class="mdc-drawer__header">
             <h3 id="drawer-header-name" class="mdc-drawer__title">Mail</h3>
@@ -417,7 +486,8 @@
               </a>
           </nav>
         </div>
-      </aside>
+      </aside> -->
+      
       <div class="mdc-drawer-scrim"></div>
       <section
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
@@ -447,7 +517,7 @@
                       type="text"
                       class="mdc-text-field__input"
                     />
-                    <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
+                    <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="username">Your Username</label>
                     <div class="mdc-line-ripple"></div>
                   </div>
             </div>
@@ -493,11 +563,10 @@
                 calendar_today
                 </i>
             </div>
-
           </li>
-
         </ul>
       </nav>
+      
       <div id='hand'></div>
       <div class="timer-group">
         <div class="timer minute">

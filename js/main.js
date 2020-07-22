@@ -941,7 +941,7 @@ function loggedIn(initialUser) {
     /* ------------MATERIAL DESIGN INIT--------------*/
     /* --------------------------------------------- */
 
-    // open modal to see settins for user
+    // open modal to see settings for user
     drawerSettingsButton.addEventListener("click", event => {
       // makes so that settings is not a transitionable drawer button
       // it is in a timeout because of conflict css transitions which solves
