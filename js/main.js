@@ -875,7 +875,7 @@ function loggedIn(initialUser) {
         }
       });
     // get target's photo
-    targetUsername.value = teacherEmail;
+    targetUsername.value = "";
     usernameLabel.innerHTML = "";
     userProfilePhoto.style.backgroundImage = "url('" + user.photoURL + "')";
     userProfileState.style.backgroundColor = "#47bf39";

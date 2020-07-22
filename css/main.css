@@ -49,25 +49,33 @@ button {
 #hangup {
   min-height: 40px !important;
   min-width: 100px !important;
+  color: #8b1e1e;
 }
+
+#hangup:hover {
+  background-color: #f19898;
+}
+
 #call {
   min-height: 40px !important;
   min-width: 100px !important;
+  color: #0a9405;
+}
+
+#call:hover {
+  background-color: #2dff9d;
 }
 /* Text inputs for both your email and target email */
 #username {
   font-size: 18px;
   user-select: none;
 }
-#usernameTextInput {
-  transform: scale(0.9);
-}
+
 #targetUsername {
   font-size: 18px;
+  width: 250px;
 }
-#targetUsernameTextInput {
-  transform: scale(0.9);
-}
+
 .right {
   width: 70vw;
 }
@@ -696,25 +704,14 @@ input {
 
 /* Calendar */
 #calendar-widget {
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.8s;
+  min-height: 40px;
+  min-width: 100px;
+  color: #000000;
 }
 #calendar-widget:hover {
-  background: #ebebeb radial-gradient(circle, transparent 1%, #ebebeb 1%) center/15000%;
+  background-color: #bbbbbb;
 }
 
-#calendar-widget:active{
-  background-color: #bbbbbb;
-  background-size: 100%;
-  transition: background 0s;
-}
 .calendar-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
