@@ -42,6 +42,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
 
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/48189a9e5f.js" crossorigin="anonymous"></script>
+
     <!-- Timepicker -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
@@ -511,8 +514,8 @@
           <!-- <p id="spamTimer"></p> -->
         </div>
       </div>
-      <div id="welcome-stage" class="" style="padding: 5em; font-size: xx-large;">Welcome!</div>
-      <div id="video-stage" class="stage" style="display: none;">
+      <div id="welcome-stage" class="" style="padding: 5em; font-size: xx-large;">Welcome!</div> 
+      <div id="video-stage" class="stage" style="display: true;">
         <video
           tabindex="-1"
           id="remoteVideo"
@@ -520,10 +523,55 @@
           class="z-depth-2"
           controls
           style="width: 1280px; height: 720px;"
-        ></video>
+        >
+        </video>
+     
         <video id="localVideo" autoplay="true" muted="true"></video>
-      </div>
+     <div class="video-buttons">
+     <button class="mdc-button mdc-button--outlined" id="user-i" style="color: black;">
+        <div class="mdc-button__ripple"></div>
+      <span id="user-i" aria-hidden="true"><i class="fas fa-microphone" style="padding: 0.25rem;"></i></span>
+        <span>Mic</span>
+    </button>
+
+    <button class="mdc-button mdc-button--outlined" id="user-ic" style="color: black;">
+      <div class="mdc-button__ripple"></div>
+    <span id="user-ic" aria-hidden="true"><i class="fas fa-video" style="padding: 0.25rem;"></i></span>
+      <span>Webcam</span>
+  </button>
+
+    <button class="mdc-button mdc-button--outlined" id="user-ico" style="color: black;">
+      <div class="mdc-button__ripple"></div>
+    <span id="user-ico" aria-hidden="true"><i class="fas fa-desktop" style="padding: 0.25rem;"></i></span>
+      <span>Video</span>
+  </button> 
+
+  <button class="mdc-button mdc-button--outlined" id="user-icon" style="color: black;">
+    <div class="mdc-button__ripple"></div>
+  <span id="user-icon" aria-hidden="true"><i class="fas fa-volume-up" style="padding: 0.25rem;"></i></span>
+    <span>Volume</span>
+</button>
+</div> 
+</div>
       <div id="stage"></div>
+      
+      <script>
+        $('#user-i').click(function(){
+          $("i", this).toggleClass('fas fa-microphone fas fa-microphone-slash');
+        });
+
+        $('#user-ic').click(function(){
+          $("i", this).toggleClass('fas fa-video fas fa-video-slash');
+        });
+
+        $('#user-ico').click(function(){
+          $("i", this).toggleClass('fas fa-desktop fas fa-window-close');
+        });
+       
+      $('#user-icon').click(function(){
+        $("i", this).toggleClass('fas fa-volume-up fas fa-volume-off');
+      });
+  </script>
 
 
     </div>

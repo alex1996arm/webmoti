@@ -832,3 +832,15 @@ input {
     color: #018786;
     font-size: 18px;
   }
+
+ /*  .user-cont {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  } */
+
+ .video-buttons {
+    position: absolute !important;
+    margin: 58% 30% !important;
+ }
