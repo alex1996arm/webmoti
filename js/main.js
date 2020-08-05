@@ -943,6 +943,53 @@ function loggedIn(initialUser) {
         console.log("Error getting document: ", err);
       });
 
+      // Privacy buttons - webcam, mic, video, audio
+      const microphoneButton = document.getElementById("video-stage-microphone");
+      const webcamButton = document.getElementById("video-stage-webcam");
+      const videoButton = document.getElementById("video-stage-video");
+      const volumeButton = document.getElementById("video-stage-volume");
+
+      //Event listeners to toggle icons and activate/deactivate options
+      microphoneButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-microphone");
+        if (icon.className === "fas fa-microphone"){
+          icon.className = "fas fa-microphone-slash";
+        }
+        else {
+          icon.className = "fas fa-microphone";
+        }
+      });
+
+      webcamButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-webcam");
+        if (icon.className === "fas fa-video"){
+          icon.className = "fas fa-video-slash";
+        }
+        else {
+          icon.className = "fas fa-video";
+        }
+      });
+
+      videoButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-video");
+        if (icon.className === "fas fa-desktop"){
+          icon.className = "fas fa-window-close";
+        }
+        else {
+          icon.className = "fas fa-desktop";
+        }
+      });
+
+      volumeButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-volume");
+        if (icon.className === "fas fa-volume-up"){
+          icon.className = "fas fa-volume-off";
+        }
+        else {
+          icon.className = "fas fa-volume-up";
+        }
+      });
+
     /* --------------------------------------------- */
     /* ------------MATERIAL DESIGN INIT--------------*/
     /* --------------------------------------------- */

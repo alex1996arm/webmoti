@@ -529,52 +529,33 @@
         <video id="localVideo" autoplay="true" muted="true"></video>
 
         <div class="video-buttons">
-          <button class="mdc-button mdc-button--outlined" id="user-i" style="color: black;">
+          <button class="mdc-button mdc-button--outlined" id="video-stage-microphone" style="color: black;">
               <div class="mdc-button__ripple"></div>
-            <span id="user-i" aria-hidden="true"><i class="fas fa-microphone" style="padding: 0.25rem;"></i></span>
+            <span aria-hidden="true"><i id="video-icon-microphone"  class="fas fa-microphone" style="padding: 0.25rem;"></i></span>
               <span>Mic</span>
           </button>
 
-          <button class="mdc-button mdc-button--outlined" id="user-ic" style="color: black;">
+          <button class="mdc-button mdc-button--outlined" id="video-stage-webcam" style="color: black;">
             <div class="mdc-button__ripple"></div>
-          <span id="user-ic" aria-hidden="true"><i class="fas fa-video" style="padding: 0.25rem;"></i></span>
+          <span aria-hidden="true"><i id="video-icon-webcam" class="fas fa-video" style="padding: 0.25rem;"></i></span>
             <span>Webcam</span>
           </button>
 
-          <button class="mdc-button mdc-button--outlined" id="user-ico" style="color: black;">
+          <button class="mdc-button mdc-button--outlined" id="video-stage-video" style="color: black;">
             <div class="mdc-button__ripple"></div>
-          <span id="user-ico" aria-hidden="true"><i class="fas fa-desktop" style="padding: 0.25rem;"></i></span>
+          <span aria-hidden="true"><i id="video-icon-video" class="fas fa-desktop" style="padding: 0.25rem;"></i></span>
             <span>Video</span>
           </button> 
 
-          <button class="mdc-button mdc-button--outlined" id="user-icon" style="color: black;">
+          <button class="mdc-button mdc-button--outlined" id="video-stage-volume" style="color: black;">
             <div class="mdc-button__ripple"></div>
-          <span id="user-icon" aria-hidden="true"><i class="fas fa-volume-up" style="padding: 0.25rem;"></i></span>
+          <span aria-hidden="true"><i id="video-icon-volume" class="fas fa-volume-up" style="padding: 0.25rem;"></i></span>
             <span>Volume</span>
           </button>
         </div> 
       </div>
-      
+
       <div id="stage"></div>
-      
-      <script>
-        $('#user-i').click(function(){
-          $("i", this).toggleClass('fas fa-microphone fas fa-microphone-slash');
-        });
-
-        $('#user-ic').click(function(){
-          $("i", this).toggleClass('fas fa-video fas fa-video-slash');
-        });
-
-        $('#user-ico').click(function(){
-          $("i", this).toggleClass('fas fa-desktop fas fa-window-close');
-        });
-       
-      $('#user-icon').click(function(){
-        $("i", this).toggleClass('fas fa-volume-up fas fa-volume-off');
-      });
-  </script>
-
 
     </div>
     <div id="loggedOutElements"></div>
