@@ -68,6 +68,13 @@ teacherChangeRetypeInput.addEventListener("keyup", () => {
   }
 });
 
+const tabDescriptions = {
+  "settings-email-tab":"Change email used for your account",
+  "settings-teacher-tab":"Change the hand wave time limit",
+  "settings-notif-tab":"Change notification options",
+  "settings-device-tab":"Add or remove devices for notifications"
+};
+
 // Function dynamically updates settings tab based on user click
 settingsTabs.forEach(element => {
   element.addEventListener("click", () => {
@@ -81,6 +88,8 @@ settingsTabs.forEach(element => {
       currentSettingsTab = element.id;
       element.classList.add("settings-tab-selected");
       document.getElementById(newSettingsTabBody).style.display ="flex";
+      // Fetches description according id from tabDescriptions object and sets it to modal header innerHTML
+      document.getElementById("modal-header-hint").innerHTML = tabDescriptions[element.id];
     }
   });
 })
