@@ -825,6 +825,7 @@ input {
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -10px; }
+
   .rs-range::-moz-focus-outer {
     border: 0; }
 
@@ -833,14 +834,8 @@ input {
     font-size: 18px;
   }
 
- /*  .user-cont {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-  } */
-
  .video-buttons {
+    width: auto;
     position: absolute !important;
-    margin: 58% 30% !important;
+    margin: 58% 25% !important;
  }
