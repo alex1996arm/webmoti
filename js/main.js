@@ -314,8 +314,12 @@ function loggedIn(initialUser) {
   }
 
   //Adding an event listener to send our SDP info to the server
+  const welcomeStage = document.getElementById("welcome-stage");
+  const videoStage = document.getElementById("video-stage");
   callButton.addEventListener("click", call);
   function call() {
+    welcomeStage.style.display = "none";
+    videoStage.style.display = "block";
     createPeerConnection();
     mediaDetails = getMedia(pc);
   }
@@ -327,6 +331,8 @@ function loggedIn(initialUser) {
   hangupButton.addEventListener("click", hangup);
   function hangup() {
     console.log("Hanging up");
+    welcomeStage.style.display = "block";
+    videoStage.style.display = "none";
     if (pc) {
       pc.ontrack = null;
       pc.onremovetrack = null;
@@ -869,7 +875,7 @@ function loggedIn(initialUser) {
         }
       });
     // get target's photo
-    targetUsername.value = teacherEmail;
+    targetUsername.value = "";
     usernameLabel.innerHTML = "";
     userProfilePhoto.style.backgroundImage = "url('" + user.photoURL + "')";
     userProfileState.style.backgroundColor = "#47bf39";
@@ -935,6 +941,66 @@ function loggedIn(initialUser) {
       })
       .catch(err => {
         console.log("Error getting document: ", err);
+      });
+
+      // Privacy buttons - webcam, mic, video, audio
+      const microphoneButton = document.getElementById("video-stage-microphone");
+      const webcamButton = document.getElementById("video-stage-webcam");
+      const videoButton = document.getElementById("video-stage-video");
+      const volumeButton = document.getElementById("video-stage-volume");
+
+      //Event listeners to toggle icons and activate/deactivate options
+      microphoneButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-microphone");
+        if (icon.className === "fas fa-microphone"){
+          icon.className = "fas fa-microphone-slash";
+          // Stops outgoing audio
+          localVideo.srcObject.getAudioTracks().forEach(track => track.stop());
+        }
+        else {
+          icon.className = "fas fa-microphone";
+          // Restarts call to start outgoing audio
+          call();
+        }
+      });
+
+      webcamButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-webcam");
+        if (icon.className === "fas fa-video"){
+          icon.className = "fas fa-video-slash";
+          // Stops outgoing video
+          localVideo.srcObject.getVideoTracks().forEach(track => track.stop());
+        }
+        else {
+          icon.className = "fas fa-video";
+          // Restarts call to start outgoing video
+          call();
+        }
+        
+      });
+
+      videoButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-video");
+        if (icon.className === "fas fa-desktop"){
+          icon.className = "fas fa-window-close";
+        }
+        else {
+          icon.className = "fas fa-desktop";
+        }
+        // Toggles between video stream on and off
+        document.querySelector('video').srcObject.getVideoTracks()[0].enabled = !(document.querySelector('video').srcObject.getVideoTracks()[0].enabled);
+      });
+
+      volumeButton.addEventListener("click", event => {
+        const icon = document.getElementById("video-icon-volume");
+        if (icon.className === "fas fa-volume-up"){
+          icon.className = "fas fa-volume-off";
+        }
+        else {
+          icon.className = "fas fa-volume-up";
+        }
+        // Toggles between audio stream on and off
+        document.querySelector('video').srcObject.getAudioTracks()[0].enabled = !(document.querySelector('video').srcObject.getAudioTracks()[0].enabled);
       });
 
     /* --------------------------------------------- */

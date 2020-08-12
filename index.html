@@ -42,6 +42,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
 
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/48189a9e5f.js" crossorigin="anonymous"></script>
+
     <!-- Timepicker -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
@@ -74,14 +77,14 @@
         </div>
       </div>
       <div id="teacher-email-change-different-snackbar" class="mdc-snackbar">
-        <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+        <div class="mdc-snackbar__surface" style="background-color: #B00020;">
           <div class="mdc-snackbar__actions">
-            <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+            <i class="small material-icons" style="color: rgb(218, 176, 183); margin-left: 10px;">error</i>
           </div>
           <div class="mdc-snackbar__label"
                role="status"
                aria-live="polite"
-               style="color: white !important;">
+               style="color: white;">
             Emails not mactching
           </div>
           <div class="mdc-snackbar__actions">
@@ -90,20 +93,20 @@
         </div>
       </div>
       <div style="display: none;" id="calendar-modal" class="calendar-modal">
-        <div style="width: 820px; background-color: white !important;" id="calendar"></div>
+        <div style="width: 820px; background-color: white;" id="calendar"></div>
       </div>
 
       </div>
       <div style="display: none;" id="settings-modal" class="modal">
         <div id="improper-teacher-change-email-snackbar" class="mdc-snackbar">
-          <div class="mdc-snackbar__surface" style="background-color: #B00020 !important;">
+          <div class="mdc-snackbar__surface" style="background-color: #B00020">
             <div class="mdc-snackbar__actions">
-              <i class="small material-icons" style="color: rgb(218, 176, 183) !important; margin-left: 10px;">error</i>
+              <i class="small material-icons" style="color: rgb(218, 176, 183); margin-left: 10px;">error</i>
             </div>
             <div class="mdc-snackbar__label"
                  role="status"
                  aria-live="polite"
-                 style="color: white !important;">
+                 style="color: white;">
               Improper email format
             </div>
             <div class="mdc-snackbar__actions">
@@ -119,35 +122,35 @@
             <h2 id="modal-header-title">Settings</h2>
           </div>
           <div id="modal-header-hint">
-            Emojis can be added in Google calendar titles and will appear in WebMoti notifications if added to Google calendar title.
+            Change email used for your account
           </div>
           <span class="close" style="user-select: none">&times;</span>
         </div>
         <div class="modal-body">
           <div id="settings-tabs">
-            <div tabindex="5" id="settings-email-tab" class="settings-tab settings-tab-selected">
+            <div tabindex="0" id="settings-email-tab" class="settings-tab settings-tab-selected">
               <p class="settings-tab-text">
                 Email
               </p>
               <i class="material-icons icon">&#xE0BE;</i>
-            </div tabindex="5">
-            <div tabindex="6" id="settings-teacher-tab" class="settings-tab">
+            </div tabindex="0">
+            <div tabindex="0" id="settings-teacher-tab" class="settings-tab">
               <p class="settings-tab-text">
                 Time
               </p>
               <i class="material-icons icon">&#xe192;</i>
-            </div tabindex="6">
-            <div tabindex="7" id="settings-notif-tab" class="settings-tab">
+            </div tabindex="0">
+            <div tabindex="0" id="settings-notif-tab" class="settings-tab">
               <p class="settings-tab-text">
                 Notification
               </p>
               <i class="material-icons icon">&#xe7f4;</i>
-            </div tabindex="7">
-            <div tabindex="8" id="settings-device-tab" class="settings-tab">
+            </div tabindex="0">
+            <div tabindex="0" id="settings-device-tab" class="settings-tab">
               <p class="settings-tab-text">
                 Devices
               </p>
-            </div tabindex="8">
+            </div tabindex="0">
           </div>
           <div id="settings-email-body" class="modal-body-post-tabs">
             <div id="modal-change-teacher-email-text">
@@ -269,7 +272,7 @@
                 <span class="num">1</span>
                 <input class="rs-range" type="range" min="1" max="5" id="set-notification-frequency-slider"> <span class="num">5</span>
                 </div>
-                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
+                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px;">
                   <input maxlength="2" type="text" id="set-notification-frequency" value="0" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
                   <div class="mdc-notched-outline mdc-notched-outline--upgraded">
                     <div class="mdc-notched-outline__leading"></div>
@@ -328,7 +331,7 @@
                 <!-- <div class="notification-text">
                   How many times do you want these notifications to happen? (1-5)
                 </div>
-                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px !important;">
+                <div id="set-notification-frequency-input-fields" class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined" style="width: 50px;">
                   <input maxlength="2" type="text" id="set-notification-frequency" class="mdc-text-field__input" aria-describedby="text-field-outlined-shape-one-helper-text">
                   <div class="mdc-notched-outline mdc-notched-outline--upgraded">
                     <div class="mdc-notched-outline__leading"></div>
@@ -336,7 +339,7 @@
                   </div>
                 </div> -->
               
-            <div class="notification-save-div">
+            <div class="notification-save-div" tabindex="0">
               <button id="notification-setting-save-button" class="demo-button mdc-button mdc-button--outlined mdc-ripple-upgraded">
                 <span class="mdc-button__label">save</span>
               </button>
@@ -378,6 +381,19 @@
               <span class="mdc-list-item__text">Main</span>
             </a>
             <hr class="mdc-list-divider">
+
+            <a
+              id="drawer-webmoti_manual-button"
+              class="mdc-list-item"
+              aria-selected="true"
+            >
+              <i
+                class="material-icons mdc-list-item__graphic"
+                aria-hidden="true"
+                >info</i
+              >
+              <span class="mdc-list-item__text">How to Use Webmoti</span>
+            </a>
             <a
               id="drawer-settings-button"
               class="mdc-list-item"
@@ -389,6 +405,7 @@
                 >settings</i
               >
               <span class="mdc-list-item__text">Settings</span>
+          
               <a
               id="drawer-logout-button"
               class="mdc-list-item"
@@ -400,8 +417,7 @@
                 >power_settings_new</i
               >
               <span class="mdc-list-item__text">Logout</span>
-            </a>
-
+              </a>
           </nav>
         </div>
       </aside>
@@ -410,7 +426,7 @@
         class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
       >
         <button
-          tabindex="1"
+          tabindex="0"
           id="drawer-open-button"
           class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded"
           style="--mdc-ripple-fg-size:18px; --mdc-ripple-fg-scale:1; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
@@ -426,7 +442,7 @@
                     <div id="user-photo-div" class="photo-div"></div>
                     <div id="user-photo-state" class="photo-state"></div>
                 </div>
-                <div id="usernameTextInput" class="mdc-text-field">
+                <label id="usernameTextInput" class="mdc-text-field">
                     <input
                       disabled
                       placeholder="Pending"
@@ -435,52 +451,54 @@
                       class="mdc-text-field__input"
                     />
                     <label id="usernameLabel" class="mdc-floating-label mdc-floating-label--float-above  " for="username">Your Username</label>
-                    <div class="mdc-line-ripple"></div>
-                  </div>
+                </label>
             </div>
           </li>
           <li >
             <div class="user-group">
-                <div id="teacher-photo-element" class="photo-element">
+                <div id="teacher-photo-element" class="photo-element" style="display: none;">
                     <div id="teacher-photo-div" class="photo-div"></div>
                     <div id="teacher-photo-state" class="photo-state"></div>
                 </div>
-                <div id="targetUsernameTextInput" class="mdc-text-field">
+                <label id="targetUsernameTextInput" class="mdc-text-field mdc-text-field--outlined">
                     <input
-                    tabindex="2"
                     id="targetUsername"
                     type="text"
                     class="mdc-text-field__input"
+                    aria-labelledby="label-targetUsername"
                     />
-                    <label id="targetUsernameLabel" class="mdc-floating-label mdc-floating-label--float-above" for="targetUsername"></label>
-                    <div class="mdc-line-ripple"></div>
-                </div>
+                    <span class="mdc-notched-outline">
+                      <span class="mdc-notched-outline__leading"></span>
+                      <span class="mdc-notched-outline__notch">
+                        <span class="mdc-floating-label" id="label-targetUsername">Teacher's Email</span>
+                      </span>
+                      <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                </label>
             </div>
           </li>
 
           <li>
-            <a
-              tabindex="3"
-              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
-              id="call" style="background-color: #bd1206 !important; height: 50px !important;"
-              ><i class="material-icons mdc-button__icon">call</i>Call</a
-            >
+            <button class="mdc-button mdc-button--outlined" id="call">
+              <div class="mdc-button__ripple"></div>
+              <i class="material-icons mdc-button__icon" aria-hidden="true">call</i>
+              <span>Call</span>
+            </button>
           </li>
           <li>
-            <a
-              tabindex="4"
-              class="mdc-button mdc-button--unelevated mdc-ripple-upgraded custom-button"
-              id="hangup" style="background-color: #08138c !important; height: 50px !important;"
-              ><i class="material-icons mdc-button__icon">call_end</i>Hang Up</a
-            >
+            <button class="mdc-button mdc-button--outlined" id="hangup">
+              <div class="mdc-button__ripple"></div>
+              <i class="material-icons mdc-button__icon" aria-hidden="true">call_end</i>
+              <span class="mdc-button__label">Hang Up</span>
+            </button>
           </li>
           <li>
-            <div id="calendar-widget">
-              <i class="material-icons" style="user-select: none;">
-                calendar_today
-                </i>
-            </div>
-
+            <button class="mdc-button mdc-button--outlined" 
+              id="calendar-widget">
+              <div class="mdc-button__ripple"></div>
+              <i class="material-icons mdc-button__icon" aria-hidden="true">calendar_today</i>
+              <span class="mdc-button__label">Calendar</span>
+            </button>
           </li>
 
         </ul>
@@ -496,19 +514,48 @@
           <!-- <p id="spamTimer"></p> -->
         </div>
       </div>
-      <div class="stage">
+      <div id="welcome-stage" class="" style="padding: 5em; font-size: xx-large;">Welcome!</div> 
+      <div id="video-stage" class="stage" style="display: none;">
         <video
           tabindex="-1"
           id="remoteVideo"
           autoplay="true"
           class="z-depth-2"
-          controls
+          
           style="width: 1280px; height: 720px;"
-        ></video>
+        >
+        </video>
+     
         <video id="localVideo" autoplay="true" muted="true"></video>
-      </div>
-      <div id="stage"></div>
 
+        <div class="video-buttons">
+          <button class="mdc-button mdc-button--outlined" id="video-stage-microphone" style="color: black;">
+              <div class="mdc-button__ripple"></div>
+            <span aria-hidden="true"><i id="video-icon-microphone"  class="fas fa-microphone" style="padding: 0.25rem;"></i></span>
+              <span>Mic</span>
+          </button>
+
+          <button class="mdc-button mdc-button--outlined" id="video-stage-webcam" style="color: black;">
+            <div class="mdc-button__ripple"></div>
+          <span aria-hidden="true"><i id="video-icon-webcam" class="fas fa-video" style="padding: 0.25rem;"></i></span>
+            <span>Webcam</span>
+          </button>
+
+          <button class="mdc-button mdc-button--outlined" id="video-stage-video" style="color: black;">
+            <div class="mdc-button__ripple"></div>
+          <span aria-hidden="true"><i id="video-icon-video" class="fas fa-desktop" style="padding: 0.25rem;"></i></span>
+            <span>Video</span>
+          </button> 
+
+          <button class="mdc-button mdc-button--outlined" id="video-stage-volume" style="color: black;">
+            <div class="mdc-button__ripple"></div>
+          <span aria-hidden="true"><i id="video-icon-volume" class="fas fa-volume-up" style="padding: 0.25rem;"></i></span>
+            <span>Volume</span>
+          </button>
+        </div> 
+      </div>
+
+      <div id="stage"></div>
 
     </div>
     <div id="loggedOutElements"></div>
