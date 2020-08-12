@@ -1,7 +1,7 @@
 @import "./login.css";
 
 body {
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow-x: hidden !important;
@@ -349,7 +349,7 @@ input {
 }
 /* Change teacher email tab body */
 #modal-change-teacher-email-text > * {
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 20px;
   height: fit-content;
@@ -663,7 +663,7 @@ input {
   align-items: center;
 }
 .notification-text {
-  font-family: 'Lato', sans-serif; 
+  font-family: "Roboto", sans-serif; 
   font-size: 18px; 
   font-weight: 300;
 }
@@ -792,7 +792,7 @@ input {
     height: 3px;  /* used to be 1px. this is thickness of track */
     cursor: pointer;
     box-shadow: none;
-    background: #018786;
+    background: rgba(98,0,238,.87);
     border-radius: 0px;
     border: 0px solid #010101; }
   .rs-range::-moz-range-track {
@@ -800,7 +800,7 @@ input {
     height: 1px;
     cursor: pointer;
     box-shadow: none;
-    background:#018786;
+    background:rgba(98,0,238,.87);
     border-radius: 0px;
     border: 0px solid #010101; }
   .rs-range::-webkit-slider-thumb {  
@@ -810,7 +810,7 @@ input {
     height: 18px; 
     width: 10px; 
     border-radius: 22px;
-    background:#018786;
+    background:rgba(98,0,238,.87);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -8px; }  
@@ -821,14 +821,16 @@ input {
     height: 22px;
     width: 12px;
     border-radius: 22px;
-    background:#018786;
+    background:rgba(98,0,238,.87);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -10px; }
+
   .rs-range::-moz-focus-outer {
     border: 0; }
 
   .num {
+<<<<<<< HEAD
     color: #018786;
     font-size: 18px;
   }
@@ -844,3 +846,14 @@ input {
     position: absolute !important;
     margin: 58% 30% !important;
  }
+=======
+      color: rgba(98,0,238,.87);
+      font-size: 18px;
+    }
+  
+  .new-checkbox-color {
+      background-color: rgba(98,0,238,.87) !important;
+      border-color: rgba(98,0,238,.87) !important;
+    }
+    
+>>>>>>> 78c73c7cf846f71498b7f9b96160598ab0627912
