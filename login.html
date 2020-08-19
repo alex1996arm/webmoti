@@ -21,18 +21,37 @@
     />
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link href="css/main.css" rel="stylesheet" media="screen" />
-  </head>
-  <body>
     
-
-    </div>
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
+    <!-- <style>
+      div {
+        background-image: url('img/pattern.jpg');
+      }
+    </style> -->
+  </head>
+  
+  <body>
+        <!-- The surrounding HTML is left untouched by FirebaseUI.
      Your app may use that space for branding, controls and other customizations.-->
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading..</div>
-    <!--  Scripts-->
-    <!-- This file is automatically added/served when running "node index.js". -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <div style="width:100%; height:100%; position: fixed; background-image: url('img/pattern.jpg');">
+      
+      <div id="login-card" class="mdc-card mdc-card--outlined" style="background-color: white;">
+        <img id="login-logo" class="center" src="/img/webmoti.jpg">
+        <!-- <div id="login-welcome" class="center" style="font-size: large;">Your Virtual Classroom Experience</div> -->
+
+        <br>
+        
+        <div id="firebaseui-auth-container" class="center"></div>
+
+        <br>
+
+        <div id="login-welcome" class="center" style="font-size: large;">Inclusive Media & Design Centre</div>
+      </div>
+
+      <div id="loader">Loading..</div>
+      <!--  Scripts-->
+      <!-- This file is automatically added/served when running "node index.js". -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+    </div>
     <script src="./js/login.js"></script>
   </body>
 </html>
