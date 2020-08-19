@@ -830,7 +830,6 @@ input {
     border: 0; }
 
   .num {
-<<<<<<< HEAD
     color: #018786;
     font-size: 18px;
   }
@@ -846,14 +845,3 @@ input {
     position: absolute !important;
     margin: 58% 30% !important;
  }
-=======
-      color: rgba(98,0,238,.87);
-      font-size: 18px;
-    }
-  
-  .new-checkbox-color {
-      background-color: rgba(98,0,238,.87) !important;
-      border-color: rgba(98,0,238,.87) !important;
-    }
-    
->>>>>>> 78c73c7cf846f71498b7f9b96160598ab0627912
